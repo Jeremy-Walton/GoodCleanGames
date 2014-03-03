@@ -10,6 +10,7 @@ gem 'sass-rails'
 gem 'slim-rails'
 
 gem 'pg'
+gem 'devise'
 
 gem 'uglifier'
 gem 'coffee-rails'
@@ -20,6 +21,7 @@ gem 'jbuilder'
 group :development, :test do
 	gem 'sqlite3'
 	gem 'rspec-rails'
+	gem 'capybara'
 end
 
 group :doc do

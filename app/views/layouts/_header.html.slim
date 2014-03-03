@@ -1,0 +1,18 @@
+header
+  div
+    div.logo
+      == link_to "Good Clean Games", root_path
+    nav
+      ul
+        li
+          == link_to "Home", root_path
+        - if user_signed_in?
+          li
+            == link_to "Games", '/games/home'
+          li
+            == link_to "Sign out", '/users/sign_out', :method => :delete
+        - else
+          li
+            == link_to "Sign in", '/users/sign_in'
+          li
+            == link_to "Sign up", '/users/sign_up'

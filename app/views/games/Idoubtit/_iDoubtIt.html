@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html ng-app>
+  <head>
+    <title>Jeremy's page</title>
+    <!-- <link rel="stylesheet" href="stylesheets/sass_go_fish.css"></link> -->
+    <!-- <meta name="viewport" content="width=device- width, initial-scale=1"></meta> -->
+
+    <!-- include source files here... -->
+    <!--<script src="jquery-1.11.0.min.js"></script> 
+    <script type="text/javascript" src="src/PlayingCard.js"></script>
+    <script type="text/javascript" src="src/Deck.js"></script>
+    <script type="text/javascript" src="src/DiscardPile.js"></script>
+    <script type="text/javascript" src="src/Hand.js"></script>
+    <script type="text/javascript" src="src/Player.js"></script>
+    <script type="text/javascript" src="src/Game.js"></script>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="../apigee-javascript-sdk-2.0.5/lib/apigee.min.js"></script>
+
+    <script type="text/javascript" src="src/GameView.js"></script>
+    <script type="text/javascript" src="src/jsonadditions.js"></script>
+    <script type="text/javascript">app.initialize();</script>-->
+
+  </head>
+
+  <body ng-controller="gameView" class="Idoubtit">
+
+    <HEADER>
+      <ul>
+        <li class="Links" ng-click="newGame()">New Game</li>
+        <li class="Links" ng-click="loadLocal()">Load Last Session</li>
+        <li class="Links" ng-click="saveGame()">Save Game</li>
+        <li class="Links" ng-click="loadGame()">Load Game</li>
+      </ul>
+    </HEADER>
+
+    <section class="Subheader">
+      <p>Welcome to I Doubt It. Lie at your own risk!</p>
+      <h1>{{playerNames()}}</h1>
+      <h1>{{playerTurn()}}'s turn</h1>
+    </section>
+
+    <section class="Content">
+
+      <section id="Hand">
+        <h3>Your Cards</h3>
+        <ul id="cards">
+          <li ng-repeat="card in unselectedCards(cards)">
+            <img ng-src="/assets/cards/{{card.description()}}.png" ng-click="cardSelect(card)" class="Highlight" height= "70px" />
+          </li>
+        </ul>
+      </section>
+
+      <section id="Books">
+        <h3>The Discard Pile</h3>
+        <h6>{{currentRank()}}</h6>
+        <h5>Pile</h5>
+        <ul><li><img ng-src="{{discardPile()}}"></li></ul>
+      </section>
+
+      <section id="Interface">
+        <h3>What are you going to do?</h3>
+        <p><span class="Hover" ng-click="play()">Play Cards</span>  <span class="Hover" ng-click="cancel()">Cancel</span> <span class="Hover" ng-click="doubt()">I Doubt It</span></p>
+        <h3>Selected Cards</h3>
+        <ul id="selected">
+          <li ng-repeat="card in selectedCards(cards)">
+            <img ng-src="/assets/cards/{{card.description()}}.png" />
+          </li>
+        </ul>
+      </section>
+
+      <section id="Results">
+        <h3>Last turn</h3>
+        <p>{{results()}}</p>
+      </section>
+
+      <section id="Opponent_Info">
+        <h3>Opponent Info</h3>
+        <ul>
+          <li>{{game.players[0].name}}: {{cards.length}}</li>
+          <li>{{game.players[1].name}}: {{game.players[1].handSize()}}</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <FOOTER>
+      <p>Jeremy Walton 2/12/2014</p>
+    </FOOTER>
+
+  </body>
+</html>
