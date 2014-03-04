@@ -1,8 +1,10 @@
 FinalProject::Application.routes.draw do
   devise_for :users
+  resources :games
   get "users/new"
   get "static_pages/home"
-  get "games/home"
+  # get "games/home"
+  # get "games"
 
   root :to => "static_pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
