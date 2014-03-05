@@ -22,8 +22,5 @@ test: &test
   <<: *default
   database: final_project_test
 
-production:
-  <<: *default
-
 cucumber:
   <<: *test
