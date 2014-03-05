@@ -3,18 +3,27 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
+default: &default
+  adapter: <%= ENV["DATABASE_ADAPTER"] %>
+  database: <%= ENV["DATABASE_NAME"] %>
+  username: <%= ENV["DATABASE_USER"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  pool: <%= ENV["DATABASE_POOL"] %>
+  encoding: <%= ENV["DATABASE_ENCODING"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+
 development:
-  adapter: postgresql
-  database: final_project_development
-  username: Jeremy
-  host: localhost
+  <<: *default
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &test
-  adapter: postgresql
+  <<: *default
   database: final_project_test
-  username: Jeremy
-  password:
-  host: localhost
+
+production:
+  <<: *default
+
+cucumber:
+  <<: *test
