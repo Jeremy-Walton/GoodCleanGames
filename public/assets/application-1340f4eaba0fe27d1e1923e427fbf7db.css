@@ -1,0 +1,199 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+.Idoubtit html {
+  font-size: 20px;
+  font-family: tahoma; }
+.Idoubtit .Highlight:hover {
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px; }
+.Idoubtit .Hover:hover {
+  /*background:url("../images/cards/contentMetal.png") repeat;*/
+  background-image: url(/assets/cards/contentMetal.png); }
+.Idoubtit .Links:hover {
+  /*background:url("../cards/Metal.jpg") repeat;*/
+  background-image: url(/assets/cards/metal.jpg); }
+.Idoubtit body {
+  background-image: url(/assets/cards/Background.jpg);
+  /*background-image: 'cards/Background.jpg' repeat;*/
+  /*background:url("images/cards/Background.jpg") repeat;*/ }
+.Idoubtit .Head {
+  opacity: 0.98;
+  text-align: center;
+  border-style: solid;
+  border-radius: 50px 50px 0px 0px;
+  /*background:url("../cards/Metal.jpg") repeat;*/
+  background-image: url(/assets/cards/metal.jpg); }
+.Idoubtit .Head ul {
+  padding-left: 0px; }
+.Idoubtit .Head li {
+  margin: 0px 6px;
+  font-size: 1.25em;
+  list-style: none;
+  display: inline-block;
+  padding: 5px 7px;
+  border-radius: 25px;
+  /*background:url("../cards/contentMetal.png") repeat;*/
+  background-image: url(/assets/cards/contentMetal.png);
+  box-shadow: 1px 1px 5px #000; }
+.Idoubtit .Head li a {
+  text-decoration: none;
+  color: #000; }
+.Idoubtit .Hover {
+  /*background:url("../cards/Metal.jpg") repeat;*/
+  background-image: url(/assets/cards/metal.jpg);
+  padding: 2px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px #000; }
+.Idoubtit .Subheader {
+  opacity: 0.98;
+  text-align: center;
+  padding: 1px 1px;
+  border-style: none solid;
+  /*background:url("../cards/contentMetal.png") repeat;*/
+  background-image: url(/assets/cards/contentMetal.png); }
+.Idoubtit .Subheader h1 {
+  opacity: 1;
+  margin: 40px 0px; }
+.Idoubtit .Content {
+  opacity: 0.98;
+  padding: 1px;
+  /*background:url("../cards/contentMetal.png") repeat;*/
+  background-image: url(/assets/cards/contentMetal.png);
+  border-radius: 0px 0px 50px 50px;
+  border-style: none solid solid; }
+.Idoubtit .Content .Input_Field {
+  font-size: 15px; }
+.Idoubtit .Content .Rules {
+  max-width: 1368px;
+  margin: 10px auto 0px auto;
+  padding: 10px;
+  -moz-column-count: 3;
+  -moz-column-gap: 33%;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 33%; }
+.Idoubtit .Content .Rules h4 {
+  text-align: center;
+  opacity: 1; }
+.Idoubtit .Content .Rules div {
+  text-align: center; }
+.Idoubtit .Content .Rules div a {
+  color: #000;
+  opacity: 1; }
+.Idoubtit .Content .About {
+  width: 50%;
+  margin: 0px auto;
+  text-align: center;
+  opacity: 1; }
+.Idoubtit .Content:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  padding-bottom: 10px; }
+.Idoubtit #Hand, .Idoubtit #Books, .Idoubtit #Interface {
+  display: inline-block;
+  opacity: 1;
+  width: 33%;
+  text-align: center;
+  vertical-align: top; }
+.Idoubtit #Hand p, .Idoubtit #Hand label, .Idoubtit #Books p, .Idoubtit #Books label, .Idoubtit #Interface p, .Idoubtit #Interface label {
+  opacity: 1; }
+.Idoubtit #Hand li, .Idoubtit #Books li, .Idoubtit #Interface li {
+  list-style: none;
+  display: inline-block;
+  text-indent: -1.1875em;
+  opacity: 1; }
+.Idoubtit #Results, .Idoubtit #Opponent_Info {
+  opacity: 1;
+  text-align: center;
+  display: inline-block;
+  width: 49%;
+  vertical-align: top; }
+.Idoubtit #Opponent_Info ul {
+  padding-left: 0px; }
+.Idoubtit #Opponent_Info li {
+  list-style: none; }
+.Idoubtit .Player_name, .Idoubtit .Player_cards, .Idoubtit .Player_books {
+  font-family: fantasy; }
+.Idoubtit .Foot {
+  background-color: black;
+  text-align: center;
+  color: white; }
+.Idoubtit .Foot a {
+  text-decoration: none;
+  color: #000; }
+@media screen and (max-width: 940px) {
+  .Idoubtit .Content .Rules {
+    -moz-column-count: 2;
+    -moz-column-gap: 50%;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 50%; }
+  .Idoubtit .Content #Hand, .Idoubtit .Content #Books, .Idoubtit .Content #Interface {
+    width: 50%; }
+  .Idoubtit .Content #Interface {
+    margin: 0px auto;
+    display: inline; } }
+@media screen and (max-width: 650px) {
+  .Idoubtit .Content .Rules {
+    -moz-column-count: 1;
+    -moz-column-gap: 100%;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 100%; }
+  .Idoubtit .Content #Hand, .Idoubtit .Content #Books, .Idoubtit .Content #Interface, .Idoubtit .Content #Results, .Idoubtit .Content #Opponent_Info {
+    width: 100%; } }
+header div {
+  background-image: url(/assets/noise.png);
+  background-color: #d10000;
+  border-radius: 10px;
+  padding: 2px; }
+  header div a {
+    text-decoration: none;
+    font-family: futura;
+    color: white;
+    padding: 5px; }
+header nav {
+  text-align: right;
+  padding-right: 10px; }
+header li {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: #b30000;
+  padding: 2px; }
+  header li a {
+    text-decoration: none;
+    font-family: futura;
+    color: white; }
+
+.logo {
+  margin-left: 10px;
+  float: left;
+  padding-top: 15px;
+  font-weight: bold; }
+
+footer {
+  padding-top: 10px; }
+  footer div {
+    border-top: solid;
+    border-color: #d10000; }
+    footer div p {
+      font-weight: bold; }
+
+body {
+  text-align: center;
+  background-image: url(/assets/bg.png);
+  background-color: #e4e6e5; }
