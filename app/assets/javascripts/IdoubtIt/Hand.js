@@ -52,11 +52,11 @@ Hand.prototype.takeCardByDescription = function(newCard) {
 }
 
 Hand.prototype.sortCards = function() {
-			this.cards.sort(function (a, b) {
-   			if (a.value > b.value)
-    			return 1;
-   			if (a.value < b.value)
-      			return -1;
-   			return 0;
-			});
+	this.cards.sort(function (a, b) {
+		if (a.value > b.value)
+			return 1;
+		if (a.value < b.value)
+			return -1;
+		return 0;
+	});
 }

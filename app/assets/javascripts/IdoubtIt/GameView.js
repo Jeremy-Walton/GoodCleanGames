@@ -17,44 +17,44 @@ function gameView($scope, $timeout) {
 			$scope.cards = $scope.game.players[0].hand.cards;
 		}
 
-	    $scope.saveGame = function() {
-	    	if (input = prompt("What name would you like to save it under")) {
-	    		jsongame = JSON.stringify($scope.game)
-	    		$.ajax({
-	    			url: '/game',
-	    			data: {game_type: "I Doubt It", name: input, data: jsongame},
-		    		data_type: "application/json",
-		    		method: "post"
-	    		});
-	    	}
-	    }
+		$scope.saveGame = function() {
+			if (input = prompt("What name would you like to save it under")) {
+				jsongame = JSON.stringify($scope.game)
+				$.ajax({
+					url: '/games',
+					data: {game_type: "I Doubt It", name: input, data: jsongame},
+					data_type: "application/json",
+					method: "post"
+				});
+			}
+		}
 
-	    $scope.cards = $scope.game.players[0].hand.cards;
-	    $scope.unselectedCards = function (cards) {
-	    	return cards.filter(function (card) {
-	    		return !card.selected;
-	    	});
-	    }
-	    $scope.selectedCards = function (cards) {
-	    	return cards.filter(function (card) {
-	    		return card.selected;
-	    	});
-	    }
+		$scope.cards = $scope.game.players[0].hand.cards;
+		$scope.unselectedCards = function (cards) {
+			return cards.filter(function (card) {
+				return !card.selected;
+			});
+		}
+		$scope.selectedCards = function (cards) {
+			return cards.filter(function (card) {
+				return card.selected;
+			});
+		}
 
-	    $scope.loadGame = function() {
-    		if (input = prompt("What game would you like to load?")) {
-	    		$.ajax({
-	    			url: '/game/lookup',
-	    			data: {game_type: "I Doubt It", name: input},
-	    			success: function(data) {
-		    			gameData = Object.toObject(data);
-    					$scope.game = gameData;
-    					$scope.cards = $scope.game.players[0].hand.cards;
-    					$scope.$apply();
-		    		}
-	    		});
-	    	}
-	    }
+		$scope.loadGame = function() {
+			if (input = prompt("What game would you like to load?")) {
+				$.ajax({
+					url: '/games/lookup',
+					data: {game_type: "I Doubt It", name: input},
+					success: function(data) {
+						gameData = Object.toObject(data);
+						$scope.game = gameData;
+						$scope.cards = $scope.game.players[0].hand.cards;
+						$scope.$apply();
+					}
+				});
+			}
+		}
 		
 		$scope.playerNames = function() {
 			var playerNames = "";
