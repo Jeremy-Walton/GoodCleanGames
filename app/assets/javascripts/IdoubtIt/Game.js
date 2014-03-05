@@ -3,7 +3,8 @@ function Game() {
 	this.discardPile = new DiscardPile(),
 	this.players = new Array(),
 	this.turnOrder = new Array(),
-	this.ranks = this.deck.ranks
+	this.ranks = this.deck.ranks,
+	this.className = "Game"
 }
 
 Game.prototype.addPlayer = function(name) {

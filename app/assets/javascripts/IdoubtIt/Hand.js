@@ -1,5 +1,6 @@
 function Hand() {
-	this.cards = new Array()
+	this.cards = new Array(),
+	this.className = "Hand"
 	// this.selectedCards = new Array()
 }
 

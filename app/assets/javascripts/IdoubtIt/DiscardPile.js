@@ -1,6 +1,7 @@
 function DiscardPile() {
 	this.cards = new Array(),
-	this.isDiscardPure = true
+	this.isDiscardPure = true,
+	this.className = "DiscardPile"
 }
 
 DiscardPile.prototype.size = function() {

@@ -8,16 +8,6 @@ function gameView($scope, $timeout) {
 		$scope.game.setup();
 		$scope.result = "Take your turn!";
 
-		 var client = new Apigee.Client({
-	          orgName:'jeremy-walton',
-	          appName:'idoubtit'
-	      });
-
-		// var user = prompt("Enter your Username");
-		// var pass = prompt("Enter your Password");
-		// client.login(user,pass);
-		// client.login("Guest", "Abc123abc");
-
 		$scope.newGame = function() {
 			$scope.game = new Game();
 			$scope.game.addPlayer("Jeremy");
@@ -28,43 +18,19 @@ function gameView($scope, $timeout) {
 		}
 
 	    $scope.saveGame = function() {
-	    	// need to convert to yaml and save into the database.
-
-	    	// var name = prompt("Please name your game. Note, if you use spaces in the game name, you won't be able to reload it");
-	    	// if(name) {
-	    	// 	var options = {
-	     //      type:'game',
-	     //      name:name,
-	     //      game:$scope.game
-	     //  	};
-
-		    // client.createEntity(options, function (error, response) { 
-			   //  if (error) {
-			   //  	alert("Could not create the book. Did you enter your orgName (username) correctly on line 18 of index.html?");
-			   //  } else {
-			   //  	alert("Game saved");
-			   //  }
-		    // });
-	    	// }
-	    }
-
-	    $scope.saveLocal = function() {
-	    	localStorage.setItem("localSave", JSON.stringify($scope.game));
-	    	// alert("Game saved to local storage.");
-	    }
-
-	    $scope.loadLocal = function() {
-	    	if(localStorage.getItem("localSave")){
-	    		var gameData = localStorage.getItem("localSave");
-	    		gameData = Object.fromJSON(gameData);
-	    		$scope.game = gameData;
-	    		$scope.cards = $scope.game.players[0].hand.cards;
+	    	if (input = prompt("What name would you like to save it under")) {
+	    		jsongame = JSON.stringify($scope.game)
+	    		$.ajax({
+	    			url: '/games',
+	    			data: {game_type: "I Doubt It", name: input, data: jsongame},
+	    			success: function(data) {
+		    			
+		    		},
+		    		data_type: "application/json",
+		    		method: "post"
+	    		});
 	    	}
 	    }
-	    // need to fix converting to json
-	 //    if(localStorage.getItem("localSave")){
-		// 	$scope.loadLocal();
-		// }
 
 	    $scope.cards = $scope.game.players[0].hand.cards;
 	    $scope.unselectedCards = function (cards) {
@@ -79,22 +45,17 @@ function gameView($scope, $timeout) {
 	    }
 
 	    $scope.loadGame = function() {
-	    	var id = prompt("Enter the name of the game you would like to load.");
-	    	if(id){
-	    		var properties = { 
-	    		'type':"game",
-				'name':id
-			 	}; 
-		    	client.getEntity(properties, function (error, result) { 
-					if (error) { 
-			  			alert("Failed to load game. Either you didn't log in or you entered a name that doesn't exist."); 
-					} else { 
-			  			var object = Object.toObject(result._data.game);
-			  			$scope.game = object;
-			  			$scope.cards = $scope.game.players[0].hand.cards;
-			  			$scope.$apply();
-					} 
-				});
+    		if (input = prompt("What game would you like to load?")) {
+	    		$.ajax({
+	    			url: '/games/lookup',
+	    			data: {game_type: "I Doubt It", name: input},
+	    			success: function(data) {
+		    			gameData = Object.toObject(data);
+    					$scope.game = gameData;
+    					$scope.cards = $scope.game.players[0].hand.cards;
+    					$scope.$apply();
+		    		}
+	    		});
 	    	}
 	    }
 		

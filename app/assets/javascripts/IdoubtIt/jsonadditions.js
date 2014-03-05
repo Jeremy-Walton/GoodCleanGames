@@ -1,10 +1,5 @@
 // need to fix converting to json
 
-// Object.prototype.toJSON = function(){
-//     this.className = this.constructor.name;
-//     return this;
-// }
-
 Object.fromJSON = function(input){
 	var object = JSON.parse(input);
 	object.__proto__ = window[object.className].prototype;

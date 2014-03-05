@@ -1,6 +1,7 @@
 function Player(name) {
 	this.name = name,
-	this.hand = new Hand()
+	this.hand = new Hand(),
+	this.className = "Player"
 }
 
 Player.prototype.handSize = function() {
