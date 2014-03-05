@@ -1,9 +1,13 @@
 // Header
 
+$headred: #D10000
+$headdarkred: #B30000
+$background: #e4e6e5
+
 header
 	div
 		background-image: url(/assets/noise.png)
-		background-color: #FFAA00
+		background-color: $headred
 		border-radius: 10px
 		padding: 2px
 		a
@@ -18,7 +22,7 @@ header
 	li 
 		display: inline-block
 		border-radius: 10px
-		background-color: #E39700
+		background-color: $headdarkred
 		padding: 2px
 		a
 			text-decoration: none
@@ -35,7 +39,7 @@ footer
 	padding-top: 10px
 	div
 		border-top: solid
-		border-color: #FFAA00
+		border-color: $headred
 		p 
 			font-weight: bold
 
@@ -43,3 +47,5 @@ footer
 
 body
 	text-align: center
+	background-image: url(/assets/bg.png)
+	background-color: $background

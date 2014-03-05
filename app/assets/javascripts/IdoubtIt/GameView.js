@@ -16,7 +16,7 @@ function gameView($scope, $timeout) {
 		// var user = prompt("Enter your Username");
 		// var pass = prompt("Enter your Password");
 		// client.login(user,pass);
-		client.login("Guest", "Abc123abc");
+		// client.login("Guest", "Abc123abc");
 
 		$scope.newGame = function() {
 			$scope.game = new Game();
@@ -28,22 +28,24 @@ function gameView($scope, $timeout) {
 		}
 
 	    $scope.saveGame = function() {
-	    	var name = prompt("Please name your game. Note, if you use spaces in the game name, you won't be able to reload it");
-	    	if(name) {
-	    		var options = {
-	          type:'game',
-	          name:name,
-	          game:$scope.game
-	      	};
+	    	// need to convert to yaml and save into the database.
 
-		    client.createEntity(options, function (error, response) { 
-			    if (error) {
-			    	alert("Could not create the book. Did you enter your orgName (username) correctly on line 18 of index.html?");
-			    } else {
-			    	alert("Game saved");
-			    }
-		    });
-	    	}
+	    	// var name = prompt("Please name your game. Note, if you use spaces in the game name, you won't be able to reload it");
+	    	// if(name) {
+	    	// 	var options = {
+	     //      type:'game',
+	     //      name:name,
+	     //      game:$scope.game
+	     //  	};
+
+		    // client.createEntity(options, function (error, response) { 
+			   //  if (error) {
+			   //  	alert("Could not create the book. Did you enter your orgName (username) correctly on line 18 of index.html?");
+			   //  } else {
+			   //  	alert("Game saved");
+			   //  }
+		    // });
+	    	// }
 	    }
 
 	    $scope.saveLocal = function() {

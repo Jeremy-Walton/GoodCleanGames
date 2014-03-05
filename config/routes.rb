@@ -1,4 +1,5 @@
 FinalProject::Application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   devise_for :users
   resources :games
   get "users/new"
