@@ -1,11 +1,11 @@
 FinalProject::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   devise_for :users
+  get 'games/lookup' => "games#lookup"
   resources :games
   get "users/new"
   get "static_pages/home"
   # get "games/home"
-  # get "games"
 
   root :to => "static_pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
