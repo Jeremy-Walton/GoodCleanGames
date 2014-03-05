@@ -31,7 +31,7 @@ describe User do
 
     it { should have_link('Home', href: '/') }
     it { should have_link('Sign Out', href: '/users/sign_out') }
-    it { should have_link('Games', href: '/games') }
+    it { should have_link('Games', href: '/game') }
 
   end
 
@@ -47,7 +47,7 @@ describe User do
 
     it { should have_content('Good Clean Games') }
     it { should have_link('Sign Out', href: '/users/sign_out') }
-    it { should have_link('Games', href: '/games') }
+    it { should have_link('Games', href: '/game') }
 
   end
 

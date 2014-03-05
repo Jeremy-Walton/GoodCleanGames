@@ -1,11 +1,11 @@
-class GamesController < ApplicationController
+class GameController < ApplicationController
 	 before_action :signed_in_user, only: :index
 	def home
 	end
 	def index
 	end
 	def create
-		@game = Games.new(game_params)
+		@game = Game.new(game_params)
 		if @game.save
 			render json: @game.data
 		else
@@ -18,7 +18,7 @@ class GamesController < ApplicationController
 	end
 
 	def lookup
-		game = Games.find_by(game_type: params[:game_type], name: params[:name])
+		game = Game.find_by(game_type: params[:game_type], name: params[:name])
 		if game
 			render json: game.data
 		else

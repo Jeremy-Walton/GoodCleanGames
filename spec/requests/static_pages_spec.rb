@@ -40,10 +40,10 @@ describe "Static pages" do
 	subject { page }
 
 	it { should have_link('Sign Out', href: '/users/sign_out') }
-	it { should have_link('Games', href: '/games') }
+	it { should have_link('Games', href: '/game') }
 
     it "should contain game" do
-      visit '/games'
+      visit '/game'
       expect(page).to have_content('Games page!')
       expect(page).to have_content('Jeremy Walton')
     end

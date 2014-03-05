@@ -1,8 +1,8 @@
 FinalProject::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   devise_for :users
-  get 'games/lookup' => "games#lookup"
-  resources :games
+  get 'game/lookup' => "game#lookup"
+  resources :game
   get "users/new"
   get "static_pages/home"
   # get "games/home"

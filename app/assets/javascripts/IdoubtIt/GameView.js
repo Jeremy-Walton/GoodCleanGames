@@ -21,11 +21,8 @@ function gameView($scope, $timeout) {
 	    	if (input = prompt("What name would you like to save it under")) {
 	    		jsongame = JSON.stringify($scope.game)
 	    		$.ajax({
-	    			url: '/games',
+	    			url: '/game',
 	    			data: {game_type: "I Doubt It", name: input, data: jsongame},
-	    			success: function(data) {
-		    			
-		    		},
 		    		data_type: "application/json",
 		    		method: "post"
 	    		});
@@ -47,7 +44,7 @@ function gameView($scope, $timeout) {
 	    $scope.loadGame = function() {
     		if (input = prompt("What game would you like to load?")) {
 	    		$.ajax({
-	    			url: '/games/lookup',
+	    			url: '/game/lookup',
 	    			data: {game_type: "I Doubt It", name: input},
 	    			success: function(data) {
 		    			gameData = Object.toObject(data);
