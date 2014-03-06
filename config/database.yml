@@ -3,21 +3,17 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-# default: &default
-#   adapter: <%= ENV["DATABASE_ADAPTER"] %>
-#   database: <%= ENV["DATABASE_NAME"] %>
-#   username: <%= ENV["DATABASE_USER"] %>
-#   password: <%= ENV["DATABASE_PASSWORD"] %>
-#   pool: <%= ENV["DATABASE_POOL"] %>
-#   encoding: <%= ENV["DATABASE_ENCODING"] %>
-#   host: <%= ENV["DATABASE_HOST"] %>
+default: &default
+  adapter: <%= ENV["DATABASE_ADAPTER"] %>
+  database: <%= ENV["DATABASE_NAME"] %>
+  username: <%= ENV["DATABASE_USER"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  pool: <%= ENV["DATABASE_POOL"] %>
+  encoding: <%= ENV["DATABASE_ENCODING"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
 
 development:
-  adapter: postgresql
-  database: final_project_development
-  username: Jeremy
-  password:
-  host: localhost
+  <<: *default
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,17 +21,6 @@ development:
 test: &test
   <<: *default
   database: final_project_test
-
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: d1eq7iobe3tcp7
-#   pool: 5
-#   username: ptozyjgiqxucfg
-#   password: 6BMj2QM3gVY6hQrccdopoVT8k8
-#   host: ec2-54-197-251-18.compute-1.amazonaws.com
-#   port: 5432
-
 
 cucumber:
   <<: *test
