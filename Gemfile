@@ -28,7 +28,10 @@ end
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
-  gem 'rails_12factor', '0.0.2'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
