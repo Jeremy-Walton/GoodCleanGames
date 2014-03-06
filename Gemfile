@@ -22,6 +22,8 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'jasmine-rails'
+  gem 'spinach-rails'
+  gem 'pry'
 end
 
 group :doc do

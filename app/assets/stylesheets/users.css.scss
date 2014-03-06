@@ -1,3 +1,14 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#error_explanation {
+  // background-color: #FF3333;
+  // border-radius: 10px;
+  // width: 400px;
+  // margin: auto;
+  ul {
+    list-style: none;
+    color: red;
+  }
+}
