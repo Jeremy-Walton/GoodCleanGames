@@ -23,7 +23,13 @@ test: &test
   database: final_project_test
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: final_project_development
+  pool: 5
+  username: Jeremy
+  password:
+
 
 cucumber:
   <<: *test

@@ -19,7 +19,6 @@ gem 'turbolinks'
 gem 'jbuilder'
 
 group :development, :test do
-	gem 'sqlite3'
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'jasmine-rails'
