@@ -1,4 +1,4 @@
-function gameView($scope, $timeout) {
+var gameView = ['$scope', '$timeout', function($scope, $timeout) {
   if(!$(".Idoubtit")[0]) {
 
   } else {
@@ -187,4 +187,4 @@ function gameView($scope, $timeout) {
       }
     }
   }
-}
+}];
