@@ -8,6 +8,26 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.game.setup();
     $scope.result = "Take your turn!";
 
+    $scope.increase_times_played = function() {
+      $.ajax({
+        url: '/users/lookup_stats',
+        data: {game_type: "I Doubt It"},
+        success: function(data) {
+          // console.log(data.times_played);
+          data.times_played += 1;
+          $.ajax({
+            url: '/users/update_stats',
+            data: {game_type: "I Doubt It", user_id: data.user_id, times_played: data.times_played, wins: data.wins, losses: data.losses},
+            success: function(data) {
+            }
+          });
+          // console.log(data.times_played);
+        }
+      });
+    }
+
+    $scope.increase_times_played();
+
     $scope.newGame = function() {
       $scope.game = new Game();
       $scope.game.addPlayer("Jeremy");
@@ -15,6 +35,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       $scope.game.setup();
       $scope.result = "Take your turn!";
       $scope.cards = $scope.game.players[0].hand.cards;
+      $scope.increase_times_played();
     }
 
     $scope.saveGame = function() {
@@ -142,10 +163,53 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
 
     //All methods after this do not directly change the display. They change the game and the above methods update the view.
 
+    $scope.increase_losses = function() {
+      $.ajax({
+        url: '/users/lookup_stats',
+        data: {game_type: "I Doubt It"},
+        success: function(data) {
+          // console.log("losses:" + data.losses);
+          data.losses += 1;
+          $.ajax({
+            url: '/users/update_stats',
+            data: {game_type: "I Doubt It", user_id: data.user_id, times_played: data.times_played, wins: data.wins, losses: data.losses},
+            success: function(data) {
+            }
+          });
+          // console.log("losses:" + data.losses);
+        }
+      });
+    }
+
+    $scope.increase_wins = function() {
+      $.ajax({
+        url: '/users/lookup_stats',
+        data: {game_type: "I Doubt It"},
+        success: function(data) {
+          // console.log("wins:" + data.wins);
+          data.wins += 1;
+          $.ajax({
+            url: '/users/update_stats',
+            data: {game_type: "I Doubt It", user_id: data.user_id, times_played: data.times_played, wins: data.wins, losses: data.losses},
+            success: function(data) {
+            }
+          });
+          // console.log("wins:" + data.wins);
+        }
+      });
+    }
+
     $scope.checkWinCondition = function() {
       $scope.game.players.forEach(function(player) {
         if (player.handSize() <= 0) {
-          $scope.result = player.name + " Won!";
+          if ($scope.result != player.name + " Won!") {
+            $scope.result = player.name + " Won!";
+            if (player.name == "Jeremy") {
+              $scope.increase_wins();
+            } else {
+              $scope.increase_losses();
+            }
+          }
         }
       });
     }
