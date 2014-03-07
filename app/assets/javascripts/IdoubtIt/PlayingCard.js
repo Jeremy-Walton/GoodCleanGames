@@ -10,3 +10,7 @@ function PlayingCard(rank, suit) {
 PlayingCard.prototype.description = function() {
   return this.rank + " of " + this.suit;
 }
+
+PlayingCard.prototype.class = function() {
+  return "card_" + this.rank + "_of_" + this.suit;
+}

@@ -9,9 +9,9 @@ div ng-app=''
 
     section.Subheader
       p Welcome to I Doubt It. Lie at your own risk!
-      h1 
+      h1
         | {{playerNames()}}
-      h1 
+      h1
         | {{playerTurn()}}'s turn
 
     section.Content
@@ -20,39 +20,39 @@ div ng-app=''
         h3 Your Cards
         ul#cards
           li ng-repeat="card in unselectedCards(cards)"
-            img ng-src="/assets/cards/{{card.description()}}.png" ng-click="cardSelect(card)" class="Highlight" height= "70px"
+            div ng-click="cardSelect(card)" class="Highlight" height= "70px" class="{{card.class()}}"
 
       section#Books
         h3 The Discard Pile
-        h6 
+        h6
           | {{currentRank()}}
         h5 Pile
-        ul 
-          li 
+        ul
+          li
             img ng-src="{{discardPile()}}"
 
       section#Interface
         h3 What are you going to do?
-        p 
-          span class="Hover" ng-click="play()" Play Cards   
-          span class="Hover" ng-click="cancel()" Cancel 
-          span class="Hover" ng-click="doubt()" I Doubt It 
+        p
+          span class="Hover" ng-click="play()" Play Cards
+          span class="Hover" ng-click="cancel()" Cancel
+          span class="Hover" ng-click="doubt()" I Doubt It
         h3 Selected Cards
         ul#selected
           li ng-repeat="card in selectedCards(cards)"
-            img ng-src="/assets/cards/{{card.description()}}.png"
+            div class="{{card.class()}}"
 
       section#Results
         h3 Last turn
-        p 
+        p
           | {{results()}}
 
       section#Opponent_Info
         h3 Opponent Info
         ul
-          li 
+          li
             | {{game.players[0].name}}: {{cards.length}}
-          li 
+          li
             | {{game.players[1].name}}: {{game.players[1].handSize()}}
 
     section.Foot

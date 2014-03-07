@@ -151,6 +151,174 @@
 		opacity:1;
 	}
 
+	#Hand, #Interface {
+		li div {
+			height: 96px;
+			width: 71px;
+			display: inline-block;
+		}
+		// Diamonds
+		.card_Ace_of_Diamonds {
+			background-image: image-url("cards/Ace_of_Diamonds.png");
+		}
+		.card_2_of_Diamonds {
+			background-image: image-url("cards/2_of_Diamonds.png");
+		}
+		.card_3_of_Diamonds {
+			background-image: image-url("cards/3_of_Diamonds.png");
+		}
+		.card_4_of_Diamonds {
+			background-image: image-url("cards/4_of_Diamonds.png");
+		}
+		.card_5_of_Diamonds {
+			background-image: image-url("cards/5_of_Diamonds.png");
+		}
+		.card_6_of_Diamonds {
+			background-image: image-url("cards/6_of_Diamonds.png");
+		}
+		.card_7_of_Diamonds {
+			background-image: image-url("cards/7_of_Diamonds.png");
+		}
+		.card_8_of_Diamonds {
+			background-image: image-url("cards/8_of_Diamonds.png");
+		}
+		.card_9_of_Diamonds {
+			background-image: image-url("cards/9_of_Diamonds.png");
+		}
+		.card_10_of_Diamonds {
+			background-image: image-url("cards/10_of_Diamonds.png");
+		}
+		.card_Jack_of_Diamonds {
+			background-image: image-url("cards/Jack_of_Diamonds.png");
+		}
+		.card_Queen_of_Diamonds {
+			background-image: image-url("cards/Queen_of_Diamonds.png");
+		}
+		.card_King_of_Diamonds {
+			background-image: image-url("cards/King_of_Diamonds.png");
+		}
+		// Hearts
+		.card_Ace_of_Hearts {
+			background-image: image-url("cards/Ace_of_Hearts.png");
+		}
+		.card_2_of_Hearts {
+			background-image: image-url("cards/2_of_Hearts.png");
+		}
+		.card_3_of_Hearts {
+			background-image: image-url("cards/3_of_Hearts.png");
+		}
+		.card_4_of_Hearts {
+			background-image: image-url("cards/4_of_Hearts.png");
+		}
+		.card_5_of_Hearts {
+			background-image: image-url("cards/5_of_Hearts.png");
+		}
+		.card_6_of_Hearts {
+			background-image: image-url("cards/6_of_Hearts.png");
+		}
+		.card_7_of_Hearts {
+			background-image: image-url("cards/7_of_Hearts.png");
+		}
+		.card_8_of_Hearts {
+			background-image: image-url("cards/8_of_Hearts.png");
+		}
+		.card_9_of_Hearts {
+			background-image: image-url("cards/9_of_Hearts.png");
+		}
+		.card_10_of_Hearts {
+			background-image: image-url("cards/10_of_Hearts.png");
+		}
+		.card_Jack_of_Hearts {
+			background-image: image-url("cards/Jack_of_Hearts.png");
+		}
+		.card_Queen_of_Hearts {
+			background-image: image-url("cards/Queen_of_Hearts.png");
+		}
+		.card_King_of_Hearts {
+			background-image: image-url("cards/King_of_Hearts.png");
+		}
+		//Clubs
+		.card_Ace_of_Clubs {
+			background-image: image-url("cards/Ace_of_Clubs.png");
+		}
+		.card_2_of_Clubs {
+			background-image: image-url("cards/2_of_Clubs.png");
+		}
+		.card_3_of_Clubs {
+			background-image: image-url("cards/3_of_Clubs.png");
+		}
+		.card_4_of_Clubs {
+			background-image: image-url("cards/4_of_Clubs.png");
+		}
+		.card_5_of_Clubs {
+			background-image: image-url("cards/5_of_Clubs.png");
+		}
+		.card_6_of_Clubs {
+			background-image: image-url("cards/6_of_Clubs.png");
+		}
+		.card_7_of_Clubs {
+			background-image: image-url("cards/7_of_Clubs.png");
+		}
+		.card_8_of_Clubs {
+			background-image: image-url("cards/8_of_Clubs.png");
+		}
+		.card_9_of_Clubs {
+			background-image: image-url("cards/9_of_Clubs.png");
+		}
+		.card_10_of_Clubs {
+			background-image: image-url("cards/10_of_Clubs.png");
+		}
+		.card_Jack_of_Clubs {
+			background-image: image-url("cards/Jack_of_Clubs.png");
+		}
+		.card_Queen_of_Clubs {
+			background-image: image-url("cards/Queen_of_Clubs.png");
+		}
+		.card_King_of_Clubs {
+			background-image: image-url("cards/King_of_Clubs.png");
+		}
+		//Spades
+		.card_Ace_of_Spades {
+			background-image: image-url("cards/Ace_of_Spades.png");
+		}
+		.card_2_of_Spades {
+			background-image: image-url("cards/2_of_Spades.png");
+		}
+		.card_3_of_Spades {
+			background-image: image-url("cards/3_of_Spades.png");
+		}
+		.card_4_of_Spades {
+			background-image: image-url("cards/4_of_Spades.png");
+		}
+		.card_5_of_Spades {
+			background-image: image-url("cards/5_of_Spades.png");
+		}
+		.card_6_of_Spades {
+			background-image: image-url("cards/6_of_Spades.png");
+		}
+		.card_7_of_Spades {
+			background-image: image-url("cards/7_of_Spades.png");
+		}
+		.card_8_of_Spades {
+			background-image: image-url("cards/8_of_Spades.png");
+		}
+		.card_9_of_Spades {
+			background-image: image-url("cards/9_of_Spades.png");
+		}
+		.card_10_of_Spades {
+			background-image: image-url("cards/10_of_Spades.png");
+		}
+		.card_Jack_of_Spades {
+			background-image: image-url("cards/Jack_of_Spades.png");
+		}
+		.card_Queen_of_Spades {
+			background-image: image-url("cards/Queen_of_Spades.png");
+		}
+		.card_King_of_Spades {
+			background-image: image-url("cards/King_of_Spades.png");
+		}
+	}
+
 	#Results,#Opponent_Info{
 		opacity:1;
 		text-align:center;
