@@ -86,10 +86,12 @@ GEM
     pg (0.17.1)
     phantomjs (1.9.7.0)
     polyglot (0.3.4)
-    pry (0.9.12.4)
+    pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     racc (1.4.11)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -190,7 +192,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   pg
-  pry
+  pry-rails
   rails (= 4.0.3)
   rails_12factor
   rspec-rails
