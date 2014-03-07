@@ -30,7 +30,7 @@ describe "Static pages" do
 
     before(:each) do
     visit '/'
-        click_link "Sign Up"
+    click_link "Sign Up"
     sign_up
     click_link "Sign Out"
     click_link "Sign In"

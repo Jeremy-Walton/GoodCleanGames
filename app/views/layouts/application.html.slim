@@ -7,9 +7,11 @@ html
     == csrf_meta_tags
   body
     == render 'layouts/header'
-    p class="notice"
-      == notice 
-    p class="alert"
-      == alert
+    p
+      div.notice
+        == notice
+    p
+      div.alert
+        == alert
     == yield
     == render 'layouts/footer'

@@ -19,9 +19,11 @@ gem 'turbolinks'
 gem 'jbuilder'
 
 group :development, :test do
-	gem 'rspec-rails'
-	gem 'capybara'
-	gem 'jasmine-rails'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'jasmine-rails'
+  gem 'spinach-rails'
+  gem 'pry-rails'
 end
 
 group :doc do
