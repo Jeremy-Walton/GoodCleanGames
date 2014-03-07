@@ -66,10 +66,8 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
 
     $scope.discardPile = function() {
       if ($scope.game.discardPile.size() > 0) {
-        // return "/assets/cards/backs_blue.png";
         return '<%= image_path("cards/backs_blue.png") %>'
       } else {
-        // return "/assets/cards/Blank.png";
         return '<%= image_path("cards/Blank.png") %>'
       }
     }
@@ -166,7 +164,6 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       $scope.game.discardPile.recieveNewCards($scope.game.currentRank, cardsToPlay);
       $scope.result = "Robot played " + cardsToPlay.length + " " + $scope.game.currentRank() + "'s";
       $scope.game.changeCurrentRank();
-      // refreshHand();
     }
 
     $scope.robotWaitForDoubts = function() {
