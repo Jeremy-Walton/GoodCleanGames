@@ -6,7 +6,7 @@ FinalProject::Application.routes.draw do
   # get 'users/update_stats' => "users#update_stats"
   resources :games
   resources :stats
-  get "users/new"
+  # get "users/new"
   get "static_pages/home"
   # get "games/home"
 

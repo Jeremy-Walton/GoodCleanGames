@@ -10,6 +10,10 @@ header
           li
             == link_to "Games", '/games'
           li
+            == link_to "Settings", '/users/edit'
+          li
+            == link_to "Stats", '/stats'
+          li
             == link_to "Sign Out", '/users/sign_out', :method => :delete
         - else
           li

@@ -1,12 +1,12 @@
-require 'net/http'
-
 class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
   step 'I am signed in' do
     visit '/'
-    click_link "Sign In"
-    fill_in "Email",    with: "user1943876046458579809@example.com"
+    click_link "Sign Up"
+    @name = "#{Time.now.to_i}"
+    fill_in "Email",    with: "#{@name}@example.com"
     fill_in "Password", with: 'password'
-    click_button "Sign in"
+    fill_in "Password confirmation", with: 'password'
+    click_button "Sign up"
   end
 
   step 'I navigate to the game page' do
@@ -14,7 +14,9 @@ class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
   end
 
   step 'It updates stats' do
-    # statistic = Stat.new(game_type: "I Doubt It", user_id: 1, times_player: 0, wins: 0, losses: 0)
-    pending "Not sure how to implement this test."
+    pending "Not sure why this isn't working"
+    # click_link "Stats"
+    # binding.pry
+    # page.has_content?("I Doubt It: Times Played: 1, Wins: 0, Losses: 0.").must_equal true
   end
 end
