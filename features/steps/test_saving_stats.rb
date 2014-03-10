@@ -11,12 +11,12 @@ class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
 
   step 'I navigate to the game page' do
     click_link "Games"
+    # binding.pry
   end
 
   step 'It updates stats' do
-    pending "Not sure why this isn't working"
-    # click_link "Stats"
-    # binding.pry
-    # page.has_content?("I Doubt It: Times Played: 1, Wins: 0, Losses: 0.").must_equal true
+    find('.clickmenu').hover
+    click_link "Stats"
+    expect(page).to have_content("I Doubt It: Times Played: 1, Wins: 0, Losses: 0.")
   end
 end

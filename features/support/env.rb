@@ -1,7 +1,9 @@
 ENV['RAILS_ENV'] = 'test'
 require './config/environment'
-require 'rspec-rails'
-require 'capybara'
+require 'rspec/expectations'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
 
 # require 'database_cleaner'
 # DatabaseCleaner.strategy = :truncation

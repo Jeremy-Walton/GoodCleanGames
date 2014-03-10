@@ -30,7 +30,7 @@ class Spinach::Features::TestUserInteraction < Spinach::FeatureSteps
   end
 
   step 'the page should display the Game' do
-    pending "Not implemented yet"
-    # page.find(:xpath, "//div[contains(@class, 'Game_container')][contains(text(), 'I Doubt It')]").must_not_equal nil
+    # pending "Not implemented yet"
+    expect(page).to have_content("Welcome to I Doubt It. Lie at your own risk!")
   end
 end
