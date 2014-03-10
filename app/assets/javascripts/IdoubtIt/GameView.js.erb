@@ -2,8 +2,9 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
   if($(".Idoubtit")[0]) {
     $scope.get_player_name = function() {
       var email;
+      var id = $('#UserId').data('id');
       $.ajax({
-        url: '/users/name',
+        url: '/users/' + id,
         async: false,
         success: function(data) {
           email = data.email

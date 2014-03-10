@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   def new
   end
 
-  def name
-    render json: current_user
+  def show
+    render json: User.find(params[:id])
   end
+
 end
