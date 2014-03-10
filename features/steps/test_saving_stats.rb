@@ -16,6 +16,6 @@ class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
   step 'It updates stats' do
     find('.clickmenu').hover
     click_link "Stats"
-    expect(page).to have_content("I Doubt It: Times Played: 1, Wins: 0, Losses: 0.")
+    expect(page).to have_content("Game Times Played Wins Losses I Doubt It 1 0 0")
   end
 end
