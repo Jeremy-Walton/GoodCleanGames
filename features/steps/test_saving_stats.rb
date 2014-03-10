@@ -11,7 +11,6 @@ class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
 
   step 'I navigate to the game page' do
     click_link "Games"
-    # binding.pry
   end
 
   step 'It updates stats' do

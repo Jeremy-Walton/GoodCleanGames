@@ -7,28 +7,12 @@ class StatsController < ApplicationController
 
   def show
     statistic = Stat.find_by(game_type: params[:game_type], user_id: current_user.id)
-    if statistic
-      if params[:increment] == "times_played"
-        statistic.times_played += 1
-      elsif params[:increment] == "wins"
-        statistic.wins += 1
-      elsif params[:increment] == "losses"
-        statistic.losses += 1
-      else
-
-      end
-      statistic.save
-      render json: statistic
-      # render nothing: true
-    else
-      statistic = Stat.new(game_type: params[:game_type], user_id: current_user.id, times_played: 1, wins: 0, losses: 0)
-      if statistic.save
-        render json: statistic
-        # render nothing: true
-      else
-        render nothing: true, status: :not_found
-      end
-    end
+    statistic = Stat.new(game_type: params[:game_type], user_id: current_user.id, times_played: 0, wins: 0, losses: 0) unless statistic
+    statistic.times_played += 1 if params[:increment] == "times_played"
+    statistic.wins += 1 if params[:increment] == "wins"
+    statistic.losses += 1 if params[:increment] == "losses"
+    statistic.save
+    render json: statistic
   end
 
   private

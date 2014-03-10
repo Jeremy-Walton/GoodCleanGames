@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!
-	def new
+  before_filter :authenticate_user!
+  def new
+  end
 
-	end
+  def show
+    render json: User.find(params[:id])
+  end
 
 end
