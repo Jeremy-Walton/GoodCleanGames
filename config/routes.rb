@@ -2,15 +2,10 @@ FinalProject::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   devise_for :users
   get 'games/lookup' => "games#lookup"
-<<<<<<< HEAD
   get 'users/:id' => 'users#show'
-=======
   get 'games/IDoubtIt' => "games#IDoubtIt"
   get 'games/IDoubtItRules' => "games#IDoubtItRules"
   get 'games/CrazyEights' => "games#CrazyEights"
->>>>>>> multiple_robot_feature
-  # get 'users/lookup_stats' => "users#lookup_stats"
-  # get 'users/update_stats' => "users#update_stats"
   resources :games
   resources :stats
   # get "users/new"
