@@ -1,7 +1,5 @@
 var gameView = ['$scope', '$timeout', function($scope, $timeout) {
-  if(!$(".Idoubtit")[0]) {
-
-  } else {
+  if($(".Idoubtit")[0]) {
     $scope.get_player_name = function() {
       var email;
       $.ajax({
@@ -147,13 +145,15 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     }
 
     $scope.doubt = function() {
-      if($scope.game.whosTurn() != $scope.game.players[0].name){
-        if ($scope.game.discardPile.isDiscardPure) {
-          $scope.result = "You called I doubt it and were wrong. You picked up the discard pile.";
-          $scope.game.players[0].addCardsToHand($scope.game.discardPile.takeCards());
-        } else {
-          $scope.result = "You called I doubt it and were Right. Robot picked up the discard pile.";
-          $scope.game.players[1].addCardsToHand($scope.game.discardPile.takeCards());
+      if ($scope.result != player.name + " Won!") {
+        if($scope.game.whosTurn() != $scope.game.players[0].name){
+          if ($scope.game.discardPile.isDiscardPure) {
+            $scope.result = "You called I doubt it and were wrong. You picked up the discard pile.";
+            $scope.game.players[0].addCardsToHand($scope.game.discardPile.takeCards());
+          } else {
+            $scope.result = "You called I doubt it and were Right. Robot picked up the discard pile.";
+            $scope.game.players[1].addCardsToHand($scope.game.discardPile.takeCards());
+          }
         }
       }
     }
@@ -173,7 +173,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
         if (player.handSize() <= 0) {
           if ($scope.result != player.name + " Won!") {
             $scope.result = player.name + " Won!";
-            if (player.name == "Jeremy") {
+            if (player.name == name) {
               $scope.increment_stats("wins");
             } else {
               $scope.increment_stats("losses");

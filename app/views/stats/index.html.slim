@@ -1,4 +1,9 @@
 h1 Stats
 - if @stats.any?
-  ul.stats
+  table.stats
+    tr
+      td Game
+      td Times Played
+      td Wins
+      td Losses
     == render partial: 'stat', collection: @stats
