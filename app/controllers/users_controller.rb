@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :authenticate_user!
-  	def new
+	def new
 
-  	end
+	end
+
 end

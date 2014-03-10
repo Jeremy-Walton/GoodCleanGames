@@ -8,6 +8,18 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.game.setup();
     $scope.result = "Take your turn!";
 
+    $scope.increment_stats = function(stat) {
+      $.ajax({
+        url: '/stats/show',
+        data: {game_type: "I Doubt It", increment: stat},
+        success: function(data) {
+          console.log(data);
+        }
+      });
+    }
+
+    $scope.increment_stats("times_played");
+
     $scope.newGame = function() {
       $scope.game = new Game();
       $scope.game.addPlayer("Jeremy");
@@ -15,6 +27,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       $scope.game.setup();
       $scope.result = "Take your turn!";
       $scope.cards = $scope.game.players[0].hand.cards;
+      $scope.increment_stats("times_played");
     }
 
     $scope.saveGame = function() {
@@ -145,7 +158,14 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.checkWinCondition = function() {
       $scope.game.players.forEach(function(player) {
         if (player.handSize() <= 0) {
-          $scope.result = player.name + " Won!";
+          if ($scope.result != player.name + " Won!") {
+            $scope.result = player.name + " Won!";
+            if (player.name == "Jeremy") {
+              $scope.increment_stats("wins");
+            } else {
+              $scope.increment_stats("losses");
+            }
+          }
         }
       });
     }
