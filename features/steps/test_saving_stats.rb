@@ -10,7 +10,12 @@ class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
   end
 
   step 'I navigate to the game page' do
+<<<<<<< HEAD
     click_link "Games"
+=======
+    visit "/games/IDoubtIt"
+    # binding.pry
+>>>>>>> multiple_robot_feature
   end
 
   step 'It updates stats' do

@@ -13,6 +13,22 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       return email.split('@')[0]
     }
 
+<<<<<<< HEAD
+=======
+  } else {
+    $scope.get_player_name = function() {
+      var email;
+      $.ajax({
+        url: '/users/name',
+        async: false,
+        success: function(data) {
+          email = data.email
+        }
+      });
+      return email.split('@')[0]
+    }
+
+>>>>>>> multiple_robot_feature
     $scope.game = new Game();
     var name = $scope.get_player_name();
     $scope.game.addPlayer(name);
@@ -23,7 +39,14 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.increment_stats = function(stat) {
       $.ajax({
         url: '/stats/show',
+<<<<<<< HEAD
         data: {game_type: "I Doubt It", increment: stat}
+=======
+        data: {game_type: "I Doubt It", increment: stat},
+        success: function(data) {
+          // console.log(data);
+        }
+>>>>>>> multiple_robot_feature
       });
     }
 

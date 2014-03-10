@@ -7,5 +7,10 @@ Feature: Test user interaction
     And I click sign up
     When I fill in the form
     Then I am signed in
-    And I visit the games page
-    Then the page should display the Game
+
+  Scenario: visiting the games page
+    Given I am signed up and signed in
+    And I click the games link
+    Then I should see a list of games
+    When I click to play I Doubt It
+    Then I should see the game
