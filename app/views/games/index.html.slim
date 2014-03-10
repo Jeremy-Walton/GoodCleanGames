@@ -1,2 +1,11 @@
 h1 Games page!
-== render 'games/Idoubtit/iDoubtIt'
+section.GamesList
+  section.Game
+    p I Doubt It
+    == link_to "Play  ", '/games/IDoubtIt'
+    == link_to "Rules", '/games/IDoubtItRules'
+
+  section.Game
+    p Crazy Eights(not available yet)
+    == link_to "Play  ", '/games/CrazyEights'
+    == link_to "Rules", ''

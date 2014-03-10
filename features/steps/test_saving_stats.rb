@@ -10,7 +10,7 @@ class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
   end
 
   step 'I navigate to the game page' do
-    click_link "Games"
+    visit "/games/IDoubtIt"
     # binding.pry
   end
 

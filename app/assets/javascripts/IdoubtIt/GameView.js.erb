@@ -2,8 +2,21 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
   if(!$(".Idoubtit")[0]) {
 
   } else {
+    $scope.get_player_name = function() {
+      var email;
+      $.ajax({
+        url: '/users/name',
+        async: false,
+        success: function(data) {
+          email = data.email
+        }
+      });
+      return email.split('@')[0]
+    }
+
     $scope.game = new Game();
-    $scope.game.addPlayer("Jeremy");
+    var name = $scope.get_player_name();
+    $scope.game.addPlayer(name);
     $scope.game.addPlayer("Sam");
     $scope.game.setup();
     $scope.result = "Take your turn!";
@@ -13,7 +26,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
         url: '/stats/show',
         data: {game_type: "I Doubt It", increment: stat},
         success: function(data) {
-          console.log(data);
+          // console.log(data);
         }
       });
     }

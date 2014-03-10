@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :signed_in_user, only: :index
+  before_action :signed_in_user, only: [:index, :show]
   def home
   end
   def index
@@ -13,10 +13,6 @@ class GamesController < ApplicationController
     end
   end
 
-  def show
-
-  end
-
   def lookup
     game = Game.find_by(game_type: params[:game_type], name: params[:name])
     if game
@@ -24,6 +20,20 @@ class GamesController < ApplicationController
     else
       render nothing: true, status: :not_found
     end
+  end
+
+  # Game methods
+
+  def IDoubtIt
+
+  end
+
+  def IDoubtItRules
+
+  end
+
+  def CrazyEights
+
   end
 
   private
