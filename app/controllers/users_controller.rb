@@ -4,4 +4,8 @@ class UsersController < ApplicationController
 
 	end
 
+  def name
+    render json: current_user
+  end
+
 end
