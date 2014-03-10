@@ -23,10 +23,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.increment_stats = function(stat) {
       $.ajax({
         url: '/stats/show',
-        data: {game_type: "I Doubt It", increment: stat},
-        success: function(data) {
-          // console.log(data);
-        }
+        data: {game_type: "I Doubt It", increment: stat}
       });
     }
 
