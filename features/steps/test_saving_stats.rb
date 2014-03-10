@@ -1,5 +1,5 @@
 class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
-  step 'I am signed in' do
+  step 'I am signed up and the signed in' do
     visit '/'
     click_link "Sign Up"
     @name = "#{Time.now.to_i}"

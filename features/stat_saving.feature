@@ -4,6 +4,6 @@ Feature: Test saving stats
 
   @javascript
   Scenario: Playing game
-    Given I am signed in
+    Given I am signed up and the signed in
     And I navigate to the game page
     Then It updates stats
