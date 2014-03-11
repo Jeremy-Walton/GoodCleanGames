@@ -13,14 +13,11 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       return email.split('@')[0]
     }
 
+    $scope.randomNames = ['Bill', 'Sam', 'Joe', 'John', 'Jack', 'Jill', 'Jane', 'Chris', 'Frank', 'Fred', 'Aaron', 'Caleb', 'Kyle', 'Brandon'];
     $scope.game = new Game();
     var name = $scope.get_player_name();
     $scope.game.addPlayer(name, false);
     $scope.game.addPlayer("Sam", true);
-    $scope.game.addPlayer("Bill", true);
-    $scope.game.addPlayer("Joe", true);
-    // $scope.game.addPlayer("Braxton", true);
-    // $scope.game.addPlayer("Kyle", true);
     $scope.loopCount = 1;
     $scope.game.setup();
     $scope.result = "Take your turn!";
@@ -35,14 +32,21 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.increment_stats("times_played");
 
     $scope.newGame = function() {
-      $scope.game = new Game();
-      var name = $scope.get_player_name();
-      $scope.game.addPlayer(name);
-      $scope.game.addPlayer("Sam");
-      $scope.game.setup();
-      $scope.result = "Take your turn!";
-      $scope.cards = $scope.game.playersPostion(name).hand.cards;
-      $scope.increment_stats("times_played");
+      var input = prompt("How many robots would you like to play against?");
+      if (input > 0 && input < 6) {
+        $scope.game = new Game();
+        var name = $scope.get_player_name();
+        $scope.game.addPlayer(name);
+        for(var j, x, i = $scope.randomNames.length; i; j = Math.floor(Math.random() * i), x = $scope.randomNames[--i], $scope.randomNames[i] = $scope.randomNames[j], $scope.randomNames[j] = x);
+        for (var i = 0; i < input; i++) {
+          $scope.game.addPlayer($scope.randomNames[i], true);
+        }
+        $scope.loopCount = 1;
+        $scope.game.setup();
+        $scope.result = "Take your turn!";
+        $scope.cards = $scope.game.playerPosition(name).hand.cards;
+        $scope.increment_stats("times_played");
+      }
     }
 
     $scope.saveGame = function() {
@@ -172,6 +176,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     }
 
     $scope.doubt = function() {
+      if ($scope.result.indexOf("Won!") == -1) {
         if($scope.game.whosTurn() != $scope.get_player_name()){
           if ($scope.game.discardPile.isDiscardPure) {
             $scope.result = "You called I doubt it and were wrong. You picked up the discard pile.";
@@ -181,6 +186,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
             $scope.game.playersTurn().addCardsToHand($scope.game.discardPile.takeCards());
           }
         }
+      }
     }
 
     $scope.currentRank = function() {
