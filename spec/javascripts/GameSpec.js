@@ -61,9 +61,9 @@ describe("Game", function() {
       game.deck.makeDeck();
       game.deck.shuffle();
       game.dealCards();
-      expect(game.players[0].handSize()).toEqual(17);
+      expect(game.players[0].handSize()).toEqual(18);
       expect(game.players[1].handSize()).toEqual(17);
-      expect(game.players[2].handSize()).toEqual(18);
+      expect(game.players[2].handSize()).toEqual(17);
   });
 
   it("method setup does the above automagically", function() {
@@ -71,9 +71,9 @@ describe("Game", function() {
       game.addPlayer("Sam");
       game.addPlayer("Bob");
       game.setup();
-      expect(game.players[0].handSize()).toEqual(17);
+      expect(game.players[0].handSize()).toEqual(18);
       expect(game.players[1].handSize()).toEqual(17);
-      expect(game.players[2].handSize()).toEqual(18);
+      expect(game.players[2].handSize()).toEqual(17);
   });
 
   it("should create a game just like the first by round-tripping JSON", function() {
