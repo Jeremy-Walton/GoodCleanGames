@@ -50,10 +50,12 @@ div ng-app=''
       section#Opponent_Info
         h3 Opponent Info
         ul
-          li
-            | {{game.players[0].name}}: {{cards.length}}
-          li
-            | {{game.players[1].name}}: {{game.players[1].handSize()}}
+          li ng-repeat="player in info()"
+            | {{player.playerName()}} has {{player.handSize()}} cards.
+          / li
+          /   | {{game.players[0].name}}: {{cards.length}}
+          / li
+          /   | {{game.players[1].name}}: {{game.players[1].handSize()}}
 
     section.Foot
       p Game by Jeremy Walton. Made 2/12/2014

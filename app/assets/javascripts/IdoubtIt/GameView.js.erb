@@ -18,6 +18,9 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.game.addPlayer(name, false);
     $scope.game.addPlayer("Sam", true);
     $scope.game.addPlayer("Bill", true);
+    $scope.game.addPlayer("Joe", true);
+    // $scope.game.addPlayer("Braxton", true);
+    // $scope.game.addPlayer("Kyle", true);
     $scope.loopCount = 1;
     $scope.game.setup();
     $scope.result = "Take your turn!";
@@ -38,7 +41,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       $scope.game.addPlayer("Sam");
       $scope.game.setup();
       $scope.result = "Take your turn!";
-      $scope.cards = $scope.game.players[0].hand.cards;
+      $scope.cards = $scope.game.playersPostion(name).hand.cards;
       $scope.increment_stats("times_played");
     }
 
@@ -64,6 +67,10 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       return cards.filter(function (card) {
         return card.selected;
       });
+    }
+
+    $scope.info = function() {
+      return $scope.game.players;
     }
 
     $scope.loadGame = function() {
@@ -232,7 +239,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
         $scope.game.players[robot].addCardsToHand($scope.game.discardPile.takeCards());
       } else {
         $scope.result = $scope.game.players[robot].name + " called I doubt it and was Right. You picked up the discard pile.";
-        $scope.game.previousPlayersTurn().addCardsToHand($scope.game.discardPile.takeCards());
+        $scope.game.playerPosition($scope.get_player_name()).addCardsToHand($scope.game.discardPile.takeCards());
       }
     }
   }

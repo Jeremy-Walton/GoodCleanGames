@@ -20,3 +20,7 @@ Player.prototype.takeCardsFromHand = function(newCards) {
 Player.prototype.isRobot = function() {
   return this.isrobot;
 }
+
+Player.prototype.playerName = function() {
+  return this.name;
+}

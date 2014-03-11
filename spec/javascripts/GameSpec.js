@@ -83,4 +83,24 @@ describe("Game", function() {
       expect(fromJSON.__proto__).toEqual(game.__proto__);
   });
 
+  it("method playersTurn should return the player object of whos turn it is", function() {
+      game.addPlayer("Jeremy");
+      game.addPlayer("Sam");
+      var player = game.playersTurn();
+      expect(player.name).toEqual("Jeremy");
+      game.changeTurnOrder();
+      var player = game.playersTurn();
+      expect(player.name).toEqual("Sam");
+  });
+
+  it("method playerPosition should return the player object of your position", function() {
+      game.addPlayer("Jeremy");
+      game.addPlayer("Sam");
+      var player = game.playerPosition("Jeremy");
+      expect(player.name).toEqual("Jeremy");
+      game.changeTurnOrder();
+      var player = game.playerPosition("Jeremy");
+      expect(player.name).toEqual("Jeremy");
+  });
+
 });

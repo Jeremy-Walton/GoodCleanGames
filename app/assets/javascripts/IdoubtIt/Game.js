@@ -22,15 +22,7 @@ Game.prototype.whosTurn = function() {
 
 Game.prototype.playersTurn = function() {
   for (var i = 0; i < this.players.length; i++) {
-    if (this.players[i].name == this.turnOrder[0].name) {
-      return this.players[i];
-    }
-  }
-}
-
-Game.prototype.previousPlayersTurn = function() {
-  for (var i = 0; i < this.players.length; i++) {
-    if (this.players[i].name == this.turnOrder[this.turnOrder.length - 1].name) {
+    if (this.players[i].name == this.whosTurn()) {
       return this.players[i];
     }
   }
