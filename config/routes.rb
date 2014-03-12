@@ -4,6 +4,7 @@ FinalProject::Application.routes.draw do
   get 'games/lookup' => "games#lookup"
   get 'users/:id' => 'users#show'
   get 'games/IDoubtIt' => "games#IDoubtIt"
+  # post 'games/IDoubtIt' => "games#IDoubtIt"
   get 'games/IDoubtItRules' => "games#IDoubtItRules"
   get 'games/CrazyEights' => "games#CrazyEights"
   resources :games

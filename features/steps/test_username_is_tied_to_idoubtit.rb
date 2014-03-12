@@ -9,9 +9,8 @@ class Spinach::Features::TestUsernameIsTiedToIdoubtit < Spinach::FeatureSteps
     click_button "Sign up"
   end
 
-  step 'I navigate to the game page' do
+  step 'I start a game of I Doubt It' do
     visit '/games/IDoubtIt'
-    # binding.pry
   end
 
   step 'It should display my username' do

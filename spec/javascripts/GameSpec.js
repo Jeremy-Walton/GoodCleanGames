@@ -61,9 +61,9 @@ describe("Game", function() {
       game.deck.makeDeck();
       game.deck.shuffle();
       game.dealCards();
-      expect(game.players[0].handSize()).toEqual(17);
+      expect(game.players[0].handSize()).toEqual(18);
       expect(game.players[1].handSize()).toEqual(17);
-      expect(game.players[2].handSize()).toEqual(18);
+      expect(game.players[2].handSize()).toEqual(17);
   });
 
   it("method setup does the above automagically", function() {
@@ -71,9 +71,9 @@ describe("Game", function() {
       game.addPlayer("Sam");
       game.addPlayer("Bob");
       game.setup();
-      expect(game.players[0].handSize()).toEqual(17);
+      expect(game.players[0].handSize()).toEqual(18);
       expect(game.players[1].handSize()).toEqual(17);
-      expect(game.players[2].handSize()).toEqual(18);
+      expect(game.players[2].handSize()).toEqual(17);
   });
 
   it("should create a game just like the first by round-tripping JSON", function() {
@@ -81,6 +81,26 @@ describe("Game", function() {
       var fromJSON = game.fromJSON(aceJSON);
       expect(game.deck.prototype).toEqual(fromJSON.deck.prototype);
       expect(fromJSON.__proto__).toEqual(game.__proto__);
+  });
+
+  it("method playersTurn should return the player object of whos turn it is", function() {
+      game.addPlayer("Jeremy");
+      game.addPlayer("Sam");
+      var player = game.playersTurn();
+      expect(player.name).toEqual("Jeremy");
+      game.changeTurnOrder();
+      var player = game.playersTurn();
+      expect(player.name).toEqual("Sam");
+  });
+
+  it("method playerPosition should return the player object of your position", function() {
+      game.addPlayer("Jeremy");
+      game.addPlayer("Sam");
+      var player = game.playerPosition("Jeremy");
+      expect(player.name).toEqual("Jeremy");
+      game.changeTurnOrder();
+      var player = game.playerPosition("Jeremy");
+      expect(player.name).toEqual("Jeremy");
   });
 
 });

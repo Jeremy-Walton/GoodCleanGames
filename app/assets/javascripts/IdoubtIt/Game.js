@@ -7,9 +7,9 @@ function Game() {
   this.className = "Game"
 }
 
-Game.prototype.addPlayer = function(name) {
-  this.players.push(new Player(name));
-  this.turnOrder.push(new Player(name));
+Game.prototype.addPlayer = function(name, isrobot) {
+  this.players.push(new Player(name, isrobot));
+  this.turnOrder.push(new Player(name, isrobot));
 }
 
 Game.prototype.changeTurnOrder = function() {
@@ -20,10 +20,29 @@ Game.prototype.whosTurn = function() {
   return this.turnOrder[0].name;
 }
 
+Game.prototype.playersTurn = function() {
+  for (var i = 0; i < this.players.length; i++) {
+    if (this.players[i].name == this.whosTurn()) {
+      return this.players[i];
+    }
+  }
+}
+
+Game.prototype.playerPosition = function(name) {
+  for (var i = 0; i < this.players.length; i++) {
+    if (this.players[i].name == name) {
+      return this.players[i];
+    }
+  }
+}
+
 Game.prototype.dealCards = function() {
   while (this.deck.size() != 0) {
-    this.players[0].addCardsToHand([this.deck.takeTopCard()]);
-    this.players.push(this.players.shift());
+    for (var j = 0; j < this.players.length; j++) {
+      if (this.deck.size() != 0) {
+        this.players[j].addCardsToHand([this.deck.takeTopCard()]);
+      }
+    }
   }
 }
 

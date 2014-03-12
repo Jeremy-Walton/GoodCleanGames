@@ -5,5 +5,5 @@ Feature: Test username is tied to idoubtit
   @javascript
   Scenario: Playing game
     Given I am signed up and signed in
-    And I navigate to the game page
+    And I start a game of I Doubt It
     Then It should display my username

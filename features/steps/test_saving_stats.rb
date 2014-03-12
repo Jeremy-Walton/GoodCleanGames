@@ -9,13 +9,16 @@ class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
     click_button "Sign up"
   end
 
-  step 'I navigate to the game page' do
+  step 'I navigate to the game page starting the game' do
     visit "/games/IDoubtIt"
   end
 
-  step 'It updates stats' do
+  step 'I navigate to the stats page' do
     find('.clickmenu').hover
     click_link "Stats"
+  end
+
+  step 'I should see the updated stats' do
     expect(page).to have_content("Game Times Played Wins Losses I Doubt It 1 0 0")
   end
 end

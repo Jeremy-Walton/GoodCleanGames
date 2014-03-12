@@ -1,5 +1,3 @@
-// need to fix converting to json
-
 Object.fromJSON = function(input){
   var object = JSON.parse(input);
   object.__proto__ = window[object.className].prototype;

@@ -2,11 +2,21 @@ describe("Player", function() {
   var player;
 
   beforeEach(function() {
-      player = new Player("Jeremy");
+      player = new Player("Jeremy", false);
+      player2 = new Player("Bob", true);
   });
 
   it("should have a name", function() {
     expect(player.name).toEqual("Jeremy");
+  });
+
+  it("should know if it is a robot or not", function() {
+    expect(player.isRobot()).toEqual(false);
+    expect(player2.isRobot()).toEqual(true);
+  });
+
+  it("method playerName should return the players name", function() {
+    expect(player.playerName()).toEqual("Jeremy");
   });
 
   it("should have a hand", function() {
