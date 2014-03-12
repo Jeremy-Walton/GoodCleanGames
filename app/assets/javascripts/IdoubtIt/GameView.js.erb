@@ -13,7 +13,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       return email.split('@')[0]
     }
 
-    $scope.randomNames = ['Bill', 'Sam', 'Joe', 'John', 'Jack', 'Jill', 'Jane', 'Chris', 'Frank', 'Fred', 'Aaron', 'Caleb', 'Kyle', 'Brandon'];
+    var randomNames = ['Bill', 'Sam', 'Joe', 'John', 'Jack', 'Jill', 'Jane', 'Chris', 'Frank', 'Fred', 'Aaron', 'Caleb', 'Kyle', 'Brandon'];
     $scope.game = new Game();
     var name = $scope.get_player_name();
     $scope.game.addPlayer(name, false);
@@ -37,9 +37,9 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
         $scope.game = new Game();
         var name = $scope.get_player_name();
         $scope.game.addPlayer(name);
-        for(var j, x, i = $scope.randomNames.length; i; j = Math.floor(Math.random() * i), x = $scope.randomNames[--i], $scope.randomNames[i] = $scope.randomNames[j], $scope.randomNames[j] = x);
+        for(var j, x, i = randomNames.length; i; j = Math.floor(Math.random() * i), x = randomNames[--i], randomNames[i] = randomNames[j], randomNames[j] = x);
         for (var i = 0; i < input; i++) {
-          $scope.game.addPlayer($scope.randomNames[i], true);
+          $scope.game.addPlayer(randomNames[i], true);
         }
         $scope.loopCount = 1;
         $scope.game.setup();
