@@ -4,10 +4,14 @@ FinalProject::Application.routes.draw do
   get 'games/lookup' => "games#lookup"
   get 'users/:id' => 'users#show'
   get 'games/IDoubtIt' => "games#IDoubtIt"
-  # post 'games/IDoubtIt' => "games#IDoubtIt"
   get 'games/IDoubtItRules' => "games#IDoubtItRules"
   get 'games/CrazyEights' => "games#CrazyEights"
+  resources :game_sessions, only: [ :new, :create, :show ]
   resources :games
+  resources :i_doubt_it do
+    get :waiting, on: :member
+  end
+
   resources :stats
   # get "users/new"
   get "static_pages/home"

@@ -45,7 +45,14 @@ class Spinach::Features::TestUserInteraction < Spinach::FeatureSteps
   end
 
   step 'I click to play I Doubt It' do
-    visit "/games/IDoubtIt"
+    within '.IDoubtIt' do
+      click_on 'Play'
+    end
+  end
+
+  step 'I fill out the new game form' do
+    fill_in :game_session_number_of_players, with: 2
+    click_on 'Create'
   end
 
   step 'I should see the game' do

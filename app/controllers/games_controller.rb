@@ -28,6 +28,10 @@ class GamesController < ApplicationController
 
   end
 
+  def IDoubtItStart
+
+  end
+
   def IDoubtItRules
 
   end

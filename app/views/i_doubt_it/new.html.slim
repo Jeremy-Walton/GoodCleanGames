@@ -1,0 +1,9 @@
+= form_tag('/i_doubt_it', class: 'join')
+  = label_tag :new_game, "New Game"
+  = radio_button_tag :gametype, "new"
+  = label_tag :number_of_players, "How many people do you want to play with?"
+  = select_tag :number_of_players, options_for_select([1,2,3,4,5],1)
+  = label_tag :new_game, "Join Game"
+  = radio_button_tag :gametype, "old"
+  = text_field_tag :game_id
+  = submit_tag "Submit"

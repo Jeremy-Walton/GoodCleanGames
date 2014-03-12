@@ -1,0 +1,57 @@
+div ng-app=''
+  div.Idoubtit ng-controller="gameView"
+
+    section class="Head"
+      ul
+        li.Links ng-click="newGame()" New Game
+        li.Links ng-click="saveGame()" Save Game
+        li.Links ng-click="loadGame()" Load Game
+
+    section.Subheader
+      p Welcome to I Doubt It. Lie at your own risk!
+      h1
+        | {{playerNames()}}
+      h1
+        | {{playerTurn()}}'s turn
+
+    section.Content
+
+      section#Hand
+        h3 Your Cards
+        ul#cards
+          li ng-repeat="card in unselectedCards(cards)"
+            div ng-click="cardSelect(card)" class="Highlight" height= "70px" class="{{card.class()}}"
+
+      section#Books
+        h3 The Discard Pile
+        h6
+          | {{currentRank()}}
+        h5 Pile
+        ul
+          li
+            img ng-src="{{discardPile()}}"
+
+      section#Interface
+        h3 What are you going to do?
+        p
+          span class="Hover" ng-click="play()" Play Cards
+          span class="Hover" ng-click="cancel()" Cancel
+          span class="Hover" ng-click="doubt()" I Doubt It
+        h3 Selected Cards
+        ul#selected
+          li ng-repeat="card in selectedCards(cards)"
+            div class="{{card.class()}}"
+
+      section#Results
+        h3 Last turn
+        p
+          | {{results()}}
+
+      section#Opponent_Info
+        h3 Opponent Info
+        ul
+          li ng-repeat="player in info()"
+            | {{player.playerName()}} has {{player.handSize()}} cards.
+
+    section.Foot
+      p Game by Jeremy Walton. Made 2/12/2014

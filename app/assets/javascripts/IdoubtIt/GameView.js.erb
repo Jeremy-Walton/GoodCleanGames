@@ -13,6 +13,22 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       return email.split('@')[0]
     }
 
+    $scope.startupGame = function() {
+      // query database for game  {
+      //  looking for a game with id thats in url.
+      // success,
+      //  if game is empty
+      //    if you are the first player
+      //      setup new game with usernames that query returned.
+      //      update the database
+      //  else
+      //    load data from query into game.
+      //  end
+      // }
+    }
+
+    $scope.startupGame();
+
     var randomNames = ['Bill', 'Sam', 'Joe', 'John', 'Jack', 'Jill', 'Jane', 'Chris', 'Frank', 'Fred', 'Aaron', 'Caleb', 'Kyle', 'Brandon'];
     $scope.game = new Game();
     var name = $scope.get_player_name();
