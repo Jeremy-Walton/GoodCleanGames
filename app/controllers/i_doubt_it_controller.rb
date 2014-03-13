@@ -33,6 +33,16 @@ class IDoubtItController < ApplicationController
 
   end
 
+  def update
+    @game = Game.find_by(game_type: params[:game_type], id: params[:id])
+    @game.data = params[:data]
+    if @game.save
+      render nothing: true
+    else
+      render nothing: true, status: :not_found
+    end
+  end
+
   private
   def signed_in_user
     unless signed_in?

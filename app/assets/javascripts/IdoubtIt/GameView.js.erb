@@ -13,29 +13,65 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       return email.split('@')[0]
     }
 
+    var gameID = document.URL.split('i_doubt_it/')[1];
+
+    $scope.updateDatabase = function() {
+      jsongame = JSON.stringify($scope.game)
+      $.ajax({
+        url: '/i_doubt_it/' + gameID,
+        async: false,
+        data: {game_type: "I Doubt It", id: parseInt(gameID), data: jsongame},
+        method: "patch"
+      });
+    }
+
     $scope.startupGame = function() {
-      // query database for game  {
-      //  looking for a game with id thats in url.
-      // success,
-      //  if game is empty
-      //    if you are the first player
-      //      setup new game with usernames that query returned.
-      //      update the database
-      //  else
-      //    load data from query into game.
-      //  end
-      // }
+      $.ajax({
+          url: '/games/lookup',
+          data: {game_type: "I Doubt It", id: parseInt(gameID)},
+          async: false,
+          success: function(data) {
+            if (data.game.data == '') {
+              if ($scope.get_player_name() == data.game.name.split('@')[0]) {
+                // fill data into database
+                $scope.game = new Game();
+                var name = $scope.get_player_name();
+                $scope.game.addPlayer(name, false);
+                console.log(data.users);
+                for (var i = 0; i < data.game.number_of_players; i++) {
+                  if ($scope.get_player_name() != data.users[i].email.split('@')[0]) {
+                    $scope.game.addPlayer(data.users[i].email.split('@')[0], false);
+                  }
+                }
+                $scope.game.setup();
+                // update database
+                $scope.updateDatabase();
+                // send push notifier
+                //  ...
+              }
+            } else {
+              $.ajax({
+                url: '/games/lookup',
+                data: {game_type: "I Doubt It", id: parseInt(gameID), just_game: 'true'},
+                async: false,
+                success: function(data) {
+                  console.log(data);
+                  gameData = Object.toObject(data);
+                  $scope.game = gameData;
+                  console.log($scope.game.playerPosition($scope.get_player_name()));
+                  $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
+                  $scope.game.turnOrder = $scope.game.players;
+                }
+              });
+            }
+          }
+        });
     }
 
     $scope.startupGame();
 
     var randomNames = ['Bill', 'Sam', 'Joe', 'John', 'Jack', 'Jill', 'Jane', 'Chris', 'Frank', 'Fred', 'Aaron', 'Caleb', 'Kyle', 'Brandon'];
-    $scope.game = new Game();
-    var name = $scope.get_player_name();
-    $scope.game.addPlayer(name, false);
-    $scope.game.addPlayer("Sam", true);
     $scope.loopCount = 1;
-    $scope.game.setup();
     $scope.result = "Take your turn!";
 
     $scope.increment_stats = function(stat) {
@@ -66,6 +102,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     }
 
     $scope.saveGame = function() {
+      // broken method
       if (input = prompt("What name would you like to save it under")) {
         jsongame = JSON.stringify($scope.game)
         $.ajax({
@@ -77,7 +114,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       }
     }
 
-    $scope.cards = $scope.game.players[0].hand.cards;
+    $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
     $scope.unselectedCards = function (cards) {
       return cards.filter(function (card) {
         return !card.selected;
@@ -94,6 +131,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     }
 
     $scope.loadGame = function() {
+      // broken method
       if (input = prompt("What game would you like to load?")) {
         $.ajax({
           url: '/games/lookup',
@@ -146,29 +184,40 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     }
 
     $scope.play = function() {
-      if ($scope.selectedCards($scope.cards).length > 0) {
-        $scope.result = $scope.game.whosTurn() + " played " + $scope.game.playersTurn().hand.selectedCards().length + " " + $scope.game.currentRank() + "'s";
-        var selectedCards = $scope.selectedCards($scope.cards)
-        selectedCards.forEach(function (card) {
-          var cards = $scope.cards;
-          card.selected = false;
-          cards.splice(cards.indexOf(card), 1);
-          $scope.cards = cards;
-        });
-        $scope.game.discardPile.recieveNewCards($scope.game.currentRank(), selectedCards);
-        $scope.game.changeCurrentRank();
+      if ($scope.game.whosTurn() == $scope.get_player_name()) {
+        if ($scope.selectedCards($scope.cards).length > 0) {
+          $scope.result = $scope.game.whosTurn() + " played " + $scope.game.playersTurn().hand.selectedCards().length + " " + $scope.game.currentRank() + "'s";
+          var selectedCards = $scope.selectedCards($scope.cards)
+          selectedCards.forEach(function (card) {
+            var cards = $scope.cards;
+            card.selected = false;
+            cards.splice(cards.indexOf(card), 1);
+            $scope.cards = cards;
+          });
+          $scope.game.discardPile.recieveNewCards($scope.game.currentRank(), selectedCards);
+          $scope.game.changeCurrentRank();
 
-        for (var i = 0; i < $scope.game.players.length; i++) {
-          if ($scope.game.players[i].isRobot()) {
-            if($scope.robotWaitForDoubts()) {
-              $scope.robotPressIDoubtIt(i);
-              break;
+          if ($scope.game.hasRobots()) {
+            for (var i = 0; i < $scope.game.players.length; i++) {
+              if ($scope.game.players[i].isRobot()) {
+                if($scope.robotWaitForDoubts()) {
+                  $scope.robotPressIDoubtIt(i);
+                  break;
+                }
+              }
             }
+            $scope.game.changeTurnOrder();
+            $scope.loopCount = 1;
+            $scope.robotLoop();
+          } else {
+            $scope.game.changeTurnOrder();
+            $scope.checkWinCondition();
+            console.log($scope.game.discardPile.isDiscardPure);
+            $scope.updateDatabase();
+            // send push notifier
+            //  ...
           }
         }
-        $scope.game.changeTurnOrder();
-        $scope.loopCount = 1;
-        $scope.robotLoop();
       }
     }
 
@@ -193,16 +242,18 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
 
     $scope.doubt = function() {
       if ($scope.result.indexOf("Won!") == -1) {
-        if($scope.game.whosTurn() != $scope.get_player_name()){
+        // if($scope.game.whosTurn() != $scope.get_player_name()){
           if ($scope.game.discardPile.isDiscardPure) {
             $scope.result = "You called I doubt it and were wrong. You picked up the discard pile.";
-            $scope.game.playersPostion().addCardsToHand($scope.game.discardPile.takeCards());
+            $scope.game.playerPosition($scope.get_player_name()).addCardsToHand($scope.game.discardPile.takeCards());
           } else {
-            $scope.result = "You called I doubt it and were Right. "+ $scope.game.whosTurn() +" picked up the discard pile.";
-            $scope.game.playersTurn().addCardsToHand($scope.game.discardPile.takeCards());
+            // $scope.result = "You called I doubt it and were Right. "+ $scope.game.whosTurn() +" picked up the discard pile.";
+            $scope.result = "You called I doubt it and were Right. "+ $scope.game.previousPlayer().name +" picked up the discard pile.";
+            $scope.game.previousPlayer().addCardsToHand($scope.game.discardPile.takeCards());
           }
-        }
+        // }
       }
+      $scope.updateDatabase();
     }
 
     $scope.currentRank = function() {
