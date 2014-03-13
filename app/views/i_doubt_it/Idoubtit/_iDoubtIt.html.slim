@@ -19,7 +19,7 @@ div ng-app=''
       section#Hand
         h3 Your Cards
         ul#cards
-          li ng-repeat="card in unselectedCards(cards)"
+          li ng-repeat="card in unselectedCards(cards) track by $index"
             div ng-click="cardSelect(card)" class="Highlight" height= "70px" class="{{card.class()}}"
 
       section#Books
@@ -39,7 +39,7 @@ div ng-app=''
           span class="Hover" ng-click="doubt()" I Doubt It
         h3 Selected Cards
         ul#selected
-          li ng-repeat="card in selectedCards(cards)"
+          li ng-repeat="card in selectedCards(cards) track by $index"
             div class="{{card.class()}}"
 
       section#Results

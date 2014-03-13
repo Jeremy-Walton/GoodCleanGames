@@ -44,6 +44,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
                   }
                 }
                 $scope.game.setup();
+                $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
                 // update database
                 $scope.updateDatabase();
                 // send push notifier
@@ -114,7 +115,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       }
     }
 
-    $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
+    // $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
     $scope.unselectedCards = function (cards) {
       return cards.filter(function (card) {
         return !card.selected;
@@ -184,6 +185,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     }
 
     $scope.play = function() {
+      console.log($scope.cards.length, $scope.get_player_name());
       if ($scope.game.whosTurn() == $scope.get_player_name()) {
         if ($scope.selectedCards($scope.cards).length > 0) {
           $scope.result = $scope.game.whosTurn() + " played " + $scope.game.playersTurn().hand.selectedCards().length + " " + $scope.game.currentRank() + "'s";
@@ -219,6 +221,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
           }
         }
       }
+      console.log($scope.cards.length, $scope.get_player_name());
     }
 
     $scope.robotLoop = function() {
@@ -246,10 +249,11 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
           if ($scope.game.discardPile.isDiscardPure) {
             $scope.result = "You called I doubt it and were wrong. You picked up the discard pile.";
             $scope.game.playerPosition($scope.get_player_name()).addCardsToHand($scope.game.discardPile.takeCards());
+            $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
           } else {
-            // $scope.result = "You called I doubt it and were Right. "+ $scope.game.whosTurn() +" picked up the discard pile.";
             $scope.result = "You called I doubt it and were Right. "+ $scope.game.previousPlayer().name +" picked up the discard pile.";
             $scope.game.previousPlayer().addCardsToHand($scope.game.discardPile.takeCards());
+            $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
           }
         // }
       }
