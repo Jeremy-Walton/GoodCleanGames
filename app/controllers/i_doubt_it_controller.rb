@@ -40,18 +40,22 @@ class IDoubtItController < ApplicationController
   end
 
   def update
-    @game = Game.find_by(game_type: params[:game_type], id: params[:id])
-    @game.data = params[:data]
-    if @game.save
+    if (params[:refresh] == true)
       update_game(params[:id])
-      render nothing: true
     else
-      render nothing: true, status: :not_found
+      @game = Game.find_by(game_type: params[:game_type], id: params[:id])
+      @game.data = params[:data]
+      if @game.save
+        update_game(params[:id])
+        render nothing: true
+      else
+        render nothing: true, status: :not_found
+      end
     end
   end
 
   def update_game(id)
-    # puts "Hello"
+    puts "Hello"
     Pusher[id].trigger('reload_page', {
       message: ''
     })

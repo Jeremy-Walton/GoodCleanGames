@@ -1,3 +1,12 @@
+
+var pusher = new Pusher('c5a68e12c11e711af325');
+var id = document.URL.split('/')[4];
+console.log(id);
+var channel = pusher.subscribe(id);
+channel.bind('reload_page', function(data) {
+  location.reload();
+});
+
 var gameView = ['$scope', '$timeout', function($scope, $timeout) {
   if($(".Idoubtit")[0]) {
     $scope.get_player_name = function() {
@@ -15,7 +24,6 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
 
     var gameID = document.URL.split('i_doubt_it/')[1];
     var randomNames = ['Bill', 'Sam', 'Joe', 'John', 'Jack', 'Jill', 'Jane', 'Chris', 'Frank', 'Fred', 'Aaron', 'Caleb', 'Kyle', 'Brandon'];
-    $scope.game = '';
 
     $scope.updateDatabase = function() {
       jsongame = JSON.stringify($scope.game)
@@ -45,7 +53,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
               $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
             }
             if (data.game.data == '' && data.game.number_of_robots == 0) {
-              if ($scope.get_player_name() == data.game.name.split('@')[0]) {
+              if ($scope.get_player_name()) {
                 $scope.game = new Game();
                 var name = $scope.get_player_name();
                 $scope.game.addPlayer(name, false);
@@ -58,8 +66,6 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
                 $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
                 $scope.game.turnOrder = $scope.game.players;
                 $scope.updateDatabase();
-              } else {
-                // $scope.updateDatabase();
               }
             } else {
               $.ajax({
