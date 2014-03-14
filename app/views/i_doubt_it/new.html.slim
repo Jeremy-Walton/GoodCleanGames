@@ -6,4 +6,7 @@
   = label_tag :new_game, "Join Game"
   = radio_button_tag :gametype, "old"
   = text_field_tag :game_id
+  = label_tag :new_game, "Play With Robots"
+  = radio_button_tag :gametype, "robots"
+  = select_tag :number_of_robots, options_for_select([1,2,3,4,5],1)
   = submit_tag "Submit"

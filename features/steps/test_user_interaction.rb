@@ -51,8 +51,8 @@ class Spinach::Features::TestUserInteraction < Spinach::FeatureSteps
   end
 
   step 'I fill out the new game form' do
-    fill_in :game_session_number_of_players, with: 2
-    click_on 'Create'
+    choose 'gametype_robots'
+    click_on 'Submit'
   end
 
   step 'I should see the game' do

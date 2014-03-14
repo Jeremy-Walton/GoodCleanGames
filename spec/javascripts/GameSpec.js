@@ -103,4 +103,13 @@ describe("Game", function() {
       expect(player.name).toEqual("Jeremy");
   });
 
+  it("method previousPlayer should return the player object of the last person who played", function() {
+      game.addPlayer("Jeremy");
+      game.addPlayer("Sam");
+      game.changeTurnOrder();
+      expect(game.previousPlayer().name).toEqual("Jeremy");
+      game.changeTurnOrder();
+      expect(game.previousPlayer().name).toEqual("Sam");
+  });
+
 });

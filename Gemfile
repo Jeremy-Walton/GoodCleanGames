@@ -17,6 +17,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
+gem 'pusher'
 
 group :development, :test do
   gem 'rspec-rails'
