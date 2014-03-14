@@ -15,6 +15,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
 
     var gameID = document.URL.split('i_doubt_it/')[1];
     var randomNames = ['Bill', 'Sam', 'Joe', 'John', 'Jack', 'Jill', 'Jane', 'Chris', 'Frank', 'Fred', 'Aaron', 'Caleb', 'Kyle', 'Brandon'];
+    $scope.game = '';
 
     $scope.updateDatabase = function() {
       jsongame = JSON.stringify($scope.game)
@@ -57,6 +58,8 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
                 $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
                 $scope.game.turnOrder = $scope.game.players;
                 $scope.updateDatabase();
+              } else {
+                // $scope.updateDatabase();
               }
             } else {
               $.ajax({

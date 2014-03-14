@@ -13,7 +13,6 @@ class IDoubtItController < ApplicationController
     # need to refresh this page
     @game = Game.find(params[:id])
     if @game.has_enough_users?
-      # update_game(params[:id])
       return redirect_to i_doubt_it_path(@game.id)
     end
   end
@@ -52,7 +51,7 @@ class IDoubtItController < ApplicationController
   end
 
   def update_game(id)
-    puts "Hello"
+    # puts "Hello"
     Pusher[id].trigger('reload_page', {
       message: ''
     })
