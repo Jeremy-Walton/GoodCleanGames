@@ -32,18 +32,14 @@ div ng-app=''
             img ng-src="{{discardPile()}}"
 
       section#Interface
-        h3 What are you going to do?
-        p
-          span class="Hover" ng-click="play()" Play Cards
-          span class="Hover" ng-click="cancel()" Cancel
-          span class="Hover" ng-click="doubt()" I Doubt It
         h3 Selected Cards
         ul#selected
           li ng-repeat="card in selectedCards(cards) track by $index"
             div class="{{card.class()}}"
-
-      section#Results
+        span class="Hover" ng-click="play()" Play Cards
+        span class="Hover" ng-click="cancel()" Cancel Selection
         h3 Last turn
+        span class="Hover" ng-click="doubt()" I Doubt It
         p
           | {{results()}}
 
