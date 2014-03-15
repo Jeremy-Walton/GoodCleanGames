@@ -18,6 +18,8 @@ class GamesController < ApplicationController
     if game
       if (params[:just_game] == 'true')
         render json: game.data
+      elsif (params[:just_result] == 'true')
+        render text: game.round_result
       else
         render json: { game: game, users: game.users }
       end
@@ -51,6 +53,6 @@ class GamesController < ApplicationController
     end
   end
   def game_params
-    params.permit(:game_type, :name, :data)
+    params.permit(:game_type, :name, :data, :round_result)
   end
 end

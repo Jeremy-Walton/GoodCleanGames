@@ -21,7 +21,7 @@ class IDoubtItController < ApplicationController
 
     if (params[:gametype] == 'new')
       number_of_players = params[:number_of_players].to_i + 1
-      @game = Game.new(game_type: "I Doubt It", name: current_user.email, data: '', users: [current_user], number_of_players: number_of_players, number_of_robots: 0)
+      @game = Game.new(game_type: "I Doubt It", name: current_user.email, data: '', users: [current_user], number_of_players: number_of_players, number_of_robots: 0, round_result: '')
       if @game.save
         redirect_to waiting_i_doubt_it_path(@game.id)
       end
@@ -45,6 +45,7 @@ class IDoubtItController < ApplicationController
     else
       @game = Game.find_by(game_type: params[:game_type], id: params[:id])
       @game.data = params[:data]
+      @game.round_result = params[:round_result]
       if @game.save
         update_game(params[:id])
         render nothing: true
