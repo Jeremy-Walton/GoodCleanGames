@@ -35,6 +35,13 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       });
     }
 
+    $scope.increment_stats = function(stat) {
+      $.ajax({
+        url: '/stats/show',
+        data: {game_type: "I Doubt It", increment: stat}
+      });
+    }
+
     $scope.startupGame = function() {
       $.ajax({
           url: '/games/lookup',
@@ -51,6 +58,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
                 $scope.game.addPlayer(randomNames[i], true);
               }
               $scope.game.setup();
+              $scope.increment_stats("times_played");
               $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
             }
             if (data.game.data == '' && data.game.number_of_robots == 0) {
@@ -63,6 +71,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
                     $scope.game.addPlayer(data.users[i].email.split('@')[0], false);
                   }
                 }
+                $scope.increment_stats("times_played");
                 $scope.result = "Take your turn! ";
                 $scope.game.setup();
                 $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
@@ -98,15 +107,6 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.startupGame();
 
     $scope.loopCount = 1;
-
-    $scope.increment_stats = function(stat) {
-      $.ajax({
-        url: '/stats/show',
-        data: {game_type: "I Doubt It", increment: stat}
-      });
-    }
-
-    $scope.increment_stats("times_played");
 
     $scope.newGame = function() {
       window.location.replace("/i_doubt_it/new");

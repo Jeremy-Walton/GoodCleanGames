@@ -1,12 +1,17 @@
-= form_tag('/i_doubt_it', class: 'join')
-  = label_tag :new_game, "New Game"
-  = radio_button_tag :gametype, "new"
-  = label_tag :number_of_players, "How many people do you want to play with?"
-  = select_tag :number_of_players, options_for_select([1,2,3,4,5],1)
-  = label_tag :new_game, "Join Game"
-  = radio_button_tag :gametype, "old"
-  = text_field_tag :game_id
-  = label_tag :new_game, "Play With Robots"
-  = radio_button_tag :gametype, "robots"
-  = select_tag :number_of_robots, options_for_select([1,2,3,4,5],1)
-  = submit_tag "Submit"
+= form_tag('/i_doubt_it', class: 'IDoubtItJoin')
+  div.IDI-Game
+    = label_tag :new_game, "New Game"
+    = radio_button_tag :gametype, "new"
+  = label_tag :number_of_players, "With how many people?"
+  = select_tag :number_of_players, options_for_select([1,2,3,4,5],1), class: 'IDI-Input'
+  div.IDI-Game
+    = label_tag :new_game, "Join Game"
+    = radio_button_tag :gametype, "old"
+  = text_field_tag :game_id, "Enter game id", class: 'IDI-Input'
+  div.IDI-Game
+    = label_tag :new_game, "Play With Robots"
+    = radio_button_tag :gametype, "robots"
+  = label_tag :new_game, "With how many robots?"
+  = select_tag :number_of_robots, options_for_select([1,2,3,4,5],1), class: 'IDI-Input'
+  div.IDI-Game
+    = submit_tag "Submit", class: 'IDI-Input'

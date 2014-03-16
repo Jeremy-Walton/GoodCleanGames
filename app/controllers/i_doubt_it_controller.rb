@@ -9,6 +9,10 @@ class IDoubtItController < ApplicationController
 
   end
 
+  def index
+    @games = Game.all
+  end
+
   def waiting
     # need to refresh this page
     @game = Game.find(params[:id])

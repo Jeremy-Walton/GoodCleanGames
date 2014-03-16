@@ -1,0 +1,9 @@
+h1 I Doubt It Games!
+== link_to "Create or Join Game", new_i_doubt_it_path
+- if @games.any?
+  table.stats.Sign
+    tr
+      td Game ID
+      td Name
+      td Players
+    == render partial: 'game', collection: @games
