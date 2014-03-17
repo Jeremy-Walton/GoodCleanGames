@@ -1,0 +1,23 @@
+// Place all the styles related to the IDoubtIt controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.IDoubtItJoin {
+  background-color: #D6D6D6;
+  box-shadow: 5px 5px 5px #888888;
+  width: 33%;
+  margin: auto;
+  border-radius: 5px;
+  .IDI-Game {
+    font-size: 1.5em;
+    padding: 5px;
+  }
+
+  .IDI-Input {
+    border: none;
+    background-color: #BFBFBF;
+    margin-left: 10px;
+    font-size: 1em;
+  }
+}

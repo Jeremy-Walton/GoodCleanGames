@@ -10,7 +10,13 @@ class Spinach::Features::TestSavingStats < Spinach::FeatureSteps
   end
 
   step 'I navigate to the game page starting the game' do
-    visit "/games/IDoubtIt"
+    click_link "Games"
+    within '.IDoubtIt' do
+      click_on 'Play'
+    end
+    click_on "Create or Join Game"
+    click_on "Create"
+
   end
 
   step 'I navigate to the stats page' do

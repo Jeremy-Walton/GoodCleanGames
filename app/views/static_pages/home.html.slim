@@ -1,4 +1,7 @@
 div.content
 	h1 Good Clean Games
-	p Welcome to GoodCleanGames.com!
-    | future host of fun games.
+	p Welcome to GoodCleanGames.com! Future host of fun games.
+    - if user_signed_in?
+      p Click on the games link to play games.
+    - else
+      p Please sign in or sign up to play games.

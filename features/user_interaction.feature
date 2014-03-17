@@ -13,4 +13,5 @@ Feature: Test user interaction
     And I click the games link
     Then I should see a list of games
     When I click to play I Doubt It
+    And I fill out the new game form
     Then I should see the game

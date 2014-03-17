@@ -22,7 +22,7 @@ class Spinach::Features::TestUserInteraction < Spinach::FeatureSteps
     fill_in "Email",    with: "#{@name}@example.com"
     fill_in "Password", with: 'password'
     click_button "Sign in"
-    expect(page).to have_content('Welcome to GoodCleanGames.com')
+    expect(page).to have_content('Games page!')
   end
 
   step 'I am signed up and signed in' do
@@ -41,11 +41,17 @@ class Spinach::Features::TestUserInteraction < Spinach::FeatureSteps
 
   step 'I should see a list of games' do
     expect(page).to have_content("I Doubt It")
-    expect(page).to have_content("Crazy Eights(not available yet)")
   end
 
   step 'I click to play I Doubt It' do
-    visit "/games/IDoubtIt"
+    within '.IDoubtIt' do
+      click_on 'Play'
+    end
+    click_on "Create or Join Game"
+  end
+
+  step 'I fill out the new game form' do
+    click_on 'Create'
   end
 
   step 'I should see the game' do

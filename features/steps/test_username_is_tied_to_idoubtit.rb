@@ -10,7 +10,12 @@ class Spinach::Features::TestUsernameIsTiedToIdoubtit < Spinach::FeatureSteps
   end
 
   step 'I start a game of I Doubt It' do
-    visit '/games/IDoubtIt'
+    click_link "Games"
+    within '.IDoubtIt' do
+      click_on 'Play'
+    end
+    click_on "Create or Join Game"
+    click_on "Create"
   end
 
   step 'It should display my username' do

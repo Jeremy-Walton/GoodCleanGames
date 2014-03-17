@@ -1,0 +1,2 @@
+class IDoubtItGame < Game
+end

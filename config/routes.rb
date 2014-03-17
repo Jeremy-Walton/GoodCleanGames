@@ -1,18 +1,17 @@
 FinalProject::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   devise_for :users
-  get 'games/lookup' => "games#lookup"
   get 'users/:id' => 'users#show'
-  get 'games/IDoubtIt' => "games#IDoubtIt"
-  # post 'games/IDoubtIt' => "games#IDoubtIt"
-  get 'games/IDoubtItRules' => "games#IDoubtItRules"
-  get 'games/CrazyEights' => "games#CrazyEights"
-  resources :games
-  resources :stats
-  # get "users/new"
-  get "static_pages/home"
-  # get "games/home"
 
+  resources :i_doubt_it do
+    get :waiting, on: :member
+    resources :turn, controller:  'i_doubt_it_turn', only: [ :create ]
+  end
+
+  resources :stats
+
+  get "/games/IDoubtItRules" => 'static_pages#IDoubtItRules'
+  get "/games" => "static_pages#games"
   root :to => "static_pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
