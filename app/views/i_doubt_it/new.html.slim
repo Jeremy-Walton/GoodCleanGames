@@ -12,6 +12,6 @@ div.IDoubtItJoin
   = form_tag('/i_doubt_it/:game_id', method: "patch")
     div.IDI-Game
       = label_tag :new_game, "Join Game"
-    = text_field_tag :game_id, "Enter game id", class: 'IDI-Input'
+    = text_field_tag :game_id, "", class: 'IDI-Input', placeholder: "Enter Game ID"
     div.IDI-Game
       = submit_tag "Join", class: 'IDI-Input'
