@@ -14,8 +14,8 @@ class Spinach::Features::TestUsernameIsTiedToIdoubtit < Spinach::FeatureSteps
     within '.IDoubtIt' do
       click_on 'Play'
     end
-    choose 'gametype_robots'
-    click_on "Submit"
+    click_on "Create or Join Game"
+    click_on "Create"
   end
 
   step 'It should display my username' do

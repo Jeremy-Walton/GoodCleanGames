@@ -1,17 +1,17 @@
-= form_tag('/i_doubt_it', class: 'IDoubtItJoin')
-  div.IDI-Game
-    = label_tag :new_game, "New Game"
-    = radio_button_tag :gametype, "new"
-  = label_tag :number_of_players, "With how many people?"
-  = select_tag :number_of_players, options_for_select([1,2,3,4,5],1), class: 'IDI-Input'
-  div.IDI-Game
-    = label_tag :new_game, "Join Game"
-    = radio_button_tag :gametype, "old"
-  = text_field_tag :game_id, "Enter game id", class: 'IDI-Input'
-  div.IDI-Game
-    = label_tag :new_game, "Play With Robots"
-    = radio_button_tag :gametype, "robots"
-  = label_tag :new_game, "With how many robots?"
-  = select_tag :number_of_robots, options_for_select([1,2,3,4,5],1), class: 'IDI-Input'
-  div.IDI-Game
-    = submit_tag "Submit", class: 'IDI-Input'
+div.IDoubtItJoin
+  = form_tag('/i_doubt_it')
+    div.IDI-Game
+      = label_tag :new_game, "New Game"
+    = label_tag :number_of_players, "People"
+    = select_tag :number_of_players, options_for_select([0,1,2,3,4,5],0), class: 'IDI-Input'
+    = label_tag :new_game, "Robots"
+    = select_tag :number_of_robots, options_for_select([0,1,2,3,4,5],0), class: 'IDI-Input'
+    div.IDI-Game
+      = submit_tag "Create", class: 'IDI-Input'
+
+  = form_tag('/i_doubt_it/:game_id', method: "patch")
+    div.IDI-Game
+      = label_tag :new_game, "Join Game"
+    = text_field_tag :game_id, "Enter game id", class: 'IDI-Input'
+    div.IDI-Game
+      = submit_tag "Join", class: 'IDI-Input'

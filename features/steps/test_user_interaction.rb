@@ -22,7 +22,7 @@ class Spinach::Features::TestUserInteraction < Spinach::FeatureSteps
     fill_in "Email",    with: "#{@name}@example.com"
     fill_in "Password", with: 'password'
     click_button "Sign in"
-    expect(page).to have_content('Welcome to GoodCleanGames.com')
+    expect(page).to have_content('Games page!')
   end
 
   step 'I am signed up and signed in' do
@@ -48,11 +48,11 @@ class Spinach::Features::TestUserInteraction < Spinach::FeatureSteps
     within '.IDoubtIt' do
       click_on 'Play'
     end
+    click_on "Create or Join Game"
   end
 
   step 'I fill out the new game form' do
-    choose 'gametype_robots'
-    click_on 'Submit'
+    click_on 'Create'
   end
 
   step 'I should see the game' do

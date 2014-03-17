@@ -1,12 +1,3 @@
-
-var pusher = new Pusher('c5a68e12c11e711af325');
-var id = document.URL.split('/')[4];
-console.log(id);
-var channel = pusher.subscribe(id);
-channel.bind('reload_page', function(data) {
-  location.reload();
-});
-
 var gameView = ['$scope', '$timeout', function($scope, $timeout) {
   if($(".Idoubtit")[0]) {
     $scope.get_player_name = function() {
@@ -28,10 +19,10 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
     $scope.updateDatabase = function() {
       jsongame = JSON.stringify($scope.game)
       $.ajax({
-        url: '/i_doubt_it/' + gameID,
+        url: '/i_doubt_it/' + gameID + '/turn',
         async: false,
         data: {game_type: "I Doubt It", id: parseInt(gameID), data: jsongame, round_result: $scope.result},
-        method: "patch"
+        method: "post"
       });
     }
 
@@ -48,30 +39,30 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
           data: {game_type: "I Doubt It", id: parseInt(gameID)},
           async: false,
           success: function(data) {
-            if (data.game.number_of_robots > 0) {
+            var robots = data.game.number_of_robots;
+            var players = data.game.number_of_players;
+            var name = $scope.get_player_name();
+            var gameObject = data.game.data;
+            if (robots > 0) {
               $scope.game = new Game();
               $scope.result = "Take your turn! ";
-              var name = $scope.get_player_name();
               $scope.game.addPlayer(name, false);
               for(var j, x, i = randomNames.length; i; j = Math.floor(Math.random() * i), x = randomNames[--i], randomNames[i] = randomNames[j], randomNames[j] = x);
-              for (var i = 0; i < data.game.number_of_robots; i++) {
+              for (var i = 0; i < robots; i++) {
                 $scope.game.addPlayer(randomNames[i], true);
               }
               $scope.game.setup();
-              $scope.increment_stats("times_played");
               $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
             }
-            if (data.game.data == '' && data.game.number_of_robots == 0) {
-              if ($scope.get_player_name()) {
+            if (gameObject == '' && robots == 0) {
+              if (name) {
                 $scope.game = new Game();
-                var name = $scope.get_player_name();
                 $scope.game.addPlayer(name, false);
-                for (var i = 0; i < data.game.number_of_players; i++) {
+                for (var i = 0; i < players; i++) {
                   if ($scope.get_player_name() != data.users[i].email.split('@')[0]) {
                     $scope.game.addPlayer(data.users[i].email.split('@')[0], false);
                   }
                 }
-                $scope.increment_stats("times_played");
                 $scope.result = "Take your turn! ";
                 $scope.game.setup();
                 $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;

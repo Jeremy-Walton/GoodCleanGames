@@ -25,56 +25,70 @@ describe("Game", function() {
       expect(game.ranks).toEqual(["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]);
   });
 
-  it("method currentRank should return the rank", function() {
+  describe("#currentRank", function () {
+    it("should return the rank", function() {
       expect(game.currentRank()).toEqual("Ace");
-  });
+    });
+  }
 
-  it("method changeCurrentRank should change the rank", function() {
-      game.changeCurrentRank();
-      expect(game.currentRank()).toEqual("2");
-  });
+  describe("#changeCurrentRank", function () {
+    it("should change the rank", function() {
+        game.changeCurrentRank();
+        expect(game.currentRank()).toEqual("2");
+    });
+  }
 
-  it("method addPlayer should add a player to the player array", function() {
-      game.addPlayer("Jeremy");
-      expect(game.players.length).toEqual(1);
-      expect(game.players[0].name).toEqual("Jeremy");
-  });
+  describe("#addPlayer", function () {
+    it("should add a player to the player array", function() {
+        game.addPlayer("Jeremy");
+        expect(game.players.length).toEqual(1);
+        expect(game.players[0].name).toEqual("Jeremy");
+    });
+  }
 
-  it("method whosTurn should return name of whos turn it is", function() {
-      game.addPlayer("Jeremy");
-      game.addPlayer("Sam");
-      expect(game.whosTurn()).toEqual("Jeremy");
-  });
+  describe("#whosTurn", function () {
+    it("should return name of whos turn it is", function() {
+        game.addPlayer("Jeremy");
+        game.addPlayer("Sam");
+        expect(game.whosTurn()).toEqual("Jeremy");
+    });
+  }
 
-  it("method changeTurnOrder should rotate the turn order", function() {
-      game.addPlayer("Jeremy");
-      game.addPlayer("Sam");
-      expect(game.whosTurn()).toEqual("Jeremy");
-      game.changeTurnOrder();
-      expect(game.whosTurn()).toEqual("Sam");
-  });
+  describe("#changeTurnOrder", function () {
+    it("should rotate the turn order", function() {
+        game.addPlayer("Jeremy");
+        game.addPlayer("Sam");
+        expect(game.whosTurn()).toEqual("Jeremy");
+        game.changeTurnOrder();
+        expect(game.whosTurn()).toEqual("Sam");
+    });
+  }
 
-  it("method dealCards deals all the cards to the players", function() {
-      game.addPlayer("Jeremy");
-      game.addPlayer("Sam");
-      game.addPlayer("Bob");
-      game.deck.makeDeck();
-      game.deck.shuffle();
-      game.dealCards();
-      expect(game.players[0].handSize()).toEqual(18);
-      expect(game.players[1].handSize()).toEqual(17);
-      expect(game.players[2].handSize()).toEqual(17);
-  });
+  describe("#dealCards", function () {
+    it("should deal all the cards to the players", function() {
+        game.addPlayer("Jeremy");
+        game.addPlayer("Sam");
+        game.addPlayer("Bob");
+        game.deck.makeDeck();
+        game.deck.shuffle();
+        game.dealCards();
+        expect(game.players[0].handSize()).toEqual(18);
+        expect(game.players[1].handSize()).toEqual(17);
+        expect(game.players[2].handSize()).toEqual(17);
+    });
+  }
 
-  it("method setup does the above automagically", function() {
-      game.addPlayer("Jeremy");
-      game.addPlayer("Sam");
-      game.addPlayer("Bob");
-      game.setup();
-      expect(game.players[0].handSize()).toEqual(18);
-      expect(game.players[1].handSize()).toEqual(17);
-      expect(game.players[2].handSize()).toEqual(17);
-  });
+  describe("#setup", function () {
+    it("should do the above automagically", function() {
+        game.addPlayer("Jeremy");
+        game.addPlayer("Sam");
+        game.addPlayer("Bob");
+        game.setup();
+        expect(game.players[0].handSize()).toEqual(18);
+        expect(game.players[1].handSize()).toEqual(17);
+        expect(game.players[2].handSize()).toEqual(17);
+    });
+  }
 
   it("should create a game just like the first by round-tripping JSON", function() {
       var aceJSON = JSON.stringify(game);
@@ -83,33 +97,39 @@ describe("Game", function() {
       expect(fromJSON.__proto__).toEqual(game.__proto__);
   });
 
-  it("method playersTurn should return the player object of whos turn it is", function() {
-      game.addPlayer("Jeremy");
-      game.addPlayer("Sam");
-      var player = game.playersTurn();
-      expect(player.name).toEqual("Jeremy");
-      game.changeTurnOrder();
-      var player = game.playersTurn();
-      expect(player.name).toEqual("Sam");
-  });
+  describe("#playersTurn", function () {
+    it("should return the player object of whos turn it is", function() {
+        game.addPlayer("Jeremy");
+        game.addPlayer("Sam");
+        var player = game.playersTurn();
+        expect(player.name).toEqual("Jeremy");
+        game.changeTurnOrder();
+        var player = game.playersTurn();
+        expect(player.name).toEqual("Sam");
+    });
+  }
 
-  it("method playerPosition should return the player object of your position", function() {
-      game.addPlayer("Jeremy");
-      game.addPlayer("Sam");
-      var player = game.playerPosition("Jeremy");
-      expect(player.name).toEqual("Jeremy");
-      game.changeTurnOrder();
-      var player = game.playerPosition("Jeremy");
-      expect(player.name).toEqual("Jeremy");
-  });
+  describe("#playerPosition", function () {
+    it("should return the player object of your position", function() {
+        game.addPlayer("Jeremy");
+        game.addPlayer("Sam");
+        var player = game.playerPosition("Jeremy");
+        expect(player.name).toEqual("Jeremy");
+        game.changeTurnOrder();
+        var player = game.playerPosition("Jeremy");
+        expect(player.name).toEqual("Jeremy");
+    });
+  }
 
-  it("method previousPlayer should return the player object of the last person who played", function() {
-      game.addPlayer("Jeremy");
-      game.addPlayer("Sam");
-      game.changeTurnOrder();
-      expect(game.previousPlayer().name).toEqual("Jeremy");
-      game.changeTurnOrder();
-      expect(game.previousPlayer().name).toEqual("Sam");
-  });
+  describe("#previousPlayer", function () {
+    it("should return the player object of the last person who played", function() {
+        game.addPlayer("Jeremy");
+        game.addPlayer("Sam");
+        game.changeTurnOrder();
+        expect(game.previousPlayer().name).toEqual("Jeremy");
+        game.changeTurnOrder();
+        expect(game.previousPlayer().name).toEqual("Sam");
+    });
+  }
 
 });

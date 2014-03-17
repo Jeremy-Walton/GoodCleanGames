@@ -10,6 +10,7 @@ FinalProject::Application.routes.draw do
   resources :games
   resources :i_doubt_it do
     get :waiting, on: :member
+    resources :turn, controller:  'i_doubt_it_turn', only: [ :create ]
   end
 
   resources :stats

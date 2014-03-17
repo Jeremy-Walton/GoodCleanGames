@@ -48,7 +48,6 @@ Game.prototype.playerPosition = function(name) {
 
 Game.prototype.previousPlayer = function() {
   for (var i = 0; i < this.players.length; i++) {
-    console.log(this.turnOrder[this.turnOrder.length - 1].name);
     if (this.players[i].name == this.turnOrder[this.turnOrder.length - 1].name) {
       return this.players[i];
     }
