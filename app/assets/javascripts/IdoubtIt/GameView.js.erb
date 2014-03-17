@@ -62,32 +62,24 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
 
     updateClient = function(name) {
       $.ajax({
-        url: '/games/' + gameID,
+        url: '/i_doubt_it/' + gameID + '.json',
         method: 'get',
-        data: {game_type: "I Doubt It", id: parseInt(gameID), just_game: 'true'},
+        data: {id: parseInt(gameID)},
         async: false,
         success: function(data) {
-          gameData = Object.toObject(data);
+          gameData = JSON.parse(data.game.data);
+          gameData = Object.toObject(gameData);
           $scope.game = gameData;
           $scope.cards = $scope.game.playerPosition(name).hand.cards;
           $scope.game.turnOrder = $scope.game.players;
-        }
-      });
-      $.ajax({
-        url: '/games/' + gameID,
-        method: 'get',
-        data: {game_type: "I Doubt It", id: parseInt(gameID), just_result: 'true'},
-        async: false,
-        success: function(data) {
-          console.log(data);
-          $scope.result = data;
+          $scope.result = data.game.round_result;
         }
       });
     }
 
     $scope.startupGame = function() {
       $.ajax({
-          url: '/games/' + gameID,
+          url: '/i_doubt_it/' + gameID + '.json',
           method: 'get',
           data: {id: parseInt(gameID)},
           async: false,
@@ -321,4 +313,9 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       }
     }
   }
+
+  onPushNotification(function(data){
+    updateClient($scope.get_player_name());
+    $scope.$apply();
+  });
 }];

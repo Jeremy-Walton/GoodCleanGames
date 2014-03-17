@@ -1,14 +1,13 @@
 class IDoubtItController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :show, :new, :create]
 
-  def new
-
-  end
-
   def show
     @game = IDoubtItGame.find(params[:id])
-    # @game = Game.find(params[:id])
-    render (@game.has_enough_users? ? :show : :waiting)
+    respond_to do |format|
+      format.html {render (@game.has_enough_users? ? :show : :waiting)}
+      format.json { render json: { game: @game, users: @game.users }}
+    end
+
   end
 
   def index

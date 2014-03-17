@@ -1,3 +1,7 @@
 h1.IDoubtItWaiting#waiting Waiting
 
 p Refresh page to see if game started
+javascript:
+  onPushNotification(function(data){
+    location.reload();
+  });
