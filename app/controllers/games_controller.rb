@@ -14,7 +14,7 @@ class GamesController < ApplicationController
   end
 
   def lookup
-    game = Game.find_by(game_type: params[:game_type], id: params[:id])
+    game = IDoubtItGame.find_by(id: params[:id])
     if game
       if (params[:just_game] == 'true')
         render json: game.data

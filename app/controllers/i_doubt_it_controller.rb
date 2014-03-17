@@ -6,18 +6,19 @@ class IDoubtItController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = IDoubtItGame.find(params[:id])
+    # @game = Game.find(params[:id])
     render (@game.has_enough_users? ? :show : :waiting)
   end
 
   def index
-    @games = Game.all
+    @games = IDoubtItGame.all
   end
 
   def create
     number_of_players = params[:number_of_players].to_i + 1
     number_of_robots = params[:number_of_robots].to_i
-    @game = Game.new(game_type: "I Doubt It", name: current_user.email, data: '', users: [current_user], number_of_players: number_of_players, number_of_robots: number_of_robots, round_result: '') #may need to check whether or not there are robots
+    @game = IDoubtItGame.new(name: current_user.email, data: '', users: [current_user], number_of_players: number_of_players, number_of_robots: number_of_robots, round_result: '') #may need to check whether or not there are robots
     if @game.save
       increment_times_played
       redirect_to i_doubt_it_path(@game.id)
@@ -25,7 +26,7 @@ class IDoubtItController < ApplicationController
   end
 
   def update
-    @game = Game.find(params[:game_id])
+    @game = IDoubtItGame.find(params[:game_id])
     @game.users << current_user
     increment_times_played
     redirect_to i_doubt_it_path(@game.id)

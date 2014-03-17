@@ -1,7 +1,6 @@
 class StatsController < ApplicationController
   before_action :signed_in_user, only: :index
   def index
-    # @stats = Stat.where(user_id: current_user.id)
     @stats = current_user.stats
   end
 
