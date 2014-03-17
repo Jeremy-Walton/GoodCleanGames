@@ -33,10 +33,63 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       });
     }
 
+    createRobotGame = function(name) {
+      $scope.game = new Game();
+      $scope.result = "Take your turn! ";
+      $scope.game.addPlayer(name, false);
+      for(var j, x, i = randomNames.length; i; j = Math.floor(Math.random() * i), x = randomNames[--i], randomNames[i] = randomNames[j], randomNames[j] = x);
+      for (var i = 0; i < robots; i++) {
+        $scope.game.addPlayer(randomNames[i], true);
+      }
+      $scope.game.setup();
+      $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
+    }
+
+    initializeGame = function(name, players, data) {
+      $scope.game = new Game();
+      $scope.game.addPlayer(name, false);
+      for (var i = 0; i < players; i++) {
+        if ($scope.get_player_name() != data.users[i].email.split('@')[0]) {
+          $scope.game.addPlayer(data.users[i].email.split('@')[0], false);
+        }
+      }
+      $scope.result = "Take your turn! ";
+      $scope.game.setup();
+      $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
+      $scope.game.turnOrder = $scope.game.players;
+      $scope.updateDatabase();
+    }
+
+    updateClient = function(name) {
+      $.ajax({
+        url: '/games/' + gameID,
+        method: 'get',
+        data: {game_type: "I Doubt It", id: parseInt(gameID), just_game: 'true'},
+        async: false,
+        success: function(data) {
+          gameData = Object.toObject(data);
+          $scope.game = gameData;
+          $scope.cards = $scope.game.playerPosition(name).hand.cards;
+          $scope.game.turnOrder = $scope.game.players;
+        }
+      });
+      $.ajax({
+        url: '/games/' + gameID,
+        method: 'get',
+        data: {game_type: "I Doubt It", id: parseInt(gameID), just_result: 'true'},
+        async: false,
+        success: function(data) {
+          console.log(data);
+          $scope.result = data;
+        }
+      });
+    }
+
     $scope.startupGame = function() {
       $.ajax({
-          url: '/games/lookup',
-          data: {game_type: "I Doubt It", id: parseInt(gameID)},
+          url: '/games/' + gameID,
+          method: 'get',
+          data: {id: parseInt(gameID)},
           async: false,
           success: function(data) {
             var robots = data.game.number_of_robots;
@@ -44,52 +97,12 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
             var name = $scope.get_player_name();
             var gameObject = data.game.data;
             if (robots > 0) {
-              $scope.game = new Game();
-              $scope.result = "Take your turn! ";
-              $scope.game.addPlayer(name, false);
-              for(var j, x, i = randomNames.length; i; j = Math.floor(Math.random() * i), x = randomNames[--i], randomNames[i] = randomNames[j], randomNames[j] = x);
-              for (var i = 0; i < robots; i++) {
-                $scope.game.addPlayer(randomNames[i], true);
-              }
-              $scope.game.setup();
-              $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
+              createRobotGame(name);
             }
-            if (gameObject == '' && robots == 0) {
-              if (name) {
-                $scope.game = new Game();
-                $scope.game.addPlayer(name, false);
-                for (var i = 0; i < players; i++) {
-                  if ($scope.get_player_name() != data.users[i].email.split('@')[0]) {
-                    $scope.game.addPlayer(data.users[i].email.split('@')[0], false);
-                  }
-                }
-                $scope.result = "Take your turn! ";
-                $scope.game.setup();
-                $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
-                $scope.game.turnOrder = $scope.game.players;
-                $scope.updateDatabase();
-              }
+            if (gameObject === '' && robots === 0) {
+              initializeGame(name, players, data);
             } else {
-              $.ajax({
-                url: '/games/lookup',
-                data: {game_type: "I Doubt It", id: parseInt(gameID), just_game: 'true'},
-                async: false,
-                success: function(data) {
-                  gameData = Object.toObject(data);
-                  $scope.game = gameData;
-                  $scope.cards = $scope.game.playerPosition($scope.get_player_name()).hand.cards;
-                  $scope.game.turnOrder = $scope.game.players;
-                }
-              });
-              $.ajax({
-                url: '/games/lookup',
-                data: {game_type: "I Doubt It", id: parseInt(gameID), just_result: 'true'},
-                async: false,
-                success: function(data) {
-                  console.log(data);
-                  $scope.result = data;
-                }
-              });
+              updateClient(name);
             }
           }
         });

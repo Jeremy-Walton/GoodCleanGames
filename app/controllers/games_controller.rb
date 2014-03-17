@@ -5,15 +5,9 @@ class GamesController < ApplicationController
   def index
   end
   def create
-    @game = Game.new(game_params)
-    if @game.save
-      render json: @game.data
-    else
-      render nothing: true, status: 400
-    end
   end
 
-  def lookup
+  def show
     game = IDoubtItGame.find_by(id: params[:id])
     if game
       if (params[:just_game] == 'true')
@@ -26,24 +20,6 @@ class GamesController < ApplicationController
     else
       render nothing: true, status: :not_found
     end
-  end
-
-  # Game methods
-
-  def IDoubtIt
-
-  end
-
-  def IDoubtItStart
-
-  end
-
-  def IDoubtItRules
-
-  end
-
-  def CrazyEights
-
   end
 
   private
