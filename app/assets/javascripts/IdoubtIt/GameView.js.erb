@@ -33,7 +33,7 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       });
     }
 
-    createRobotGame = function(name) {
+    createRobotGame = function(name, robots) {
       $scope.game = new Game();
       $scope.result = "Take your turn! ";
       $scope.game.addPlayer(name, false);
@@ -89,12 +89,14 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
             var name = $scope.get_player_name();
             var gameObject = data.game.data;
             if (robots > 0) {
-              createRobotGame(name);
+              createRobotGame(name, robots);
             }
             if (gameObject === '' && robots === 0) {
               initializeGame(name, players, data);
             } else {
-              updateClient(name);
+              if (robots === 0) {
+                updateClient(name);
+              }
             }
           }
         });

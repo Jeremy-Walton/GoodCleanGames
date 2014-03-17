@@ -41,7 +41,6 @@ class Spinach::Features::TestUserInteraction < Spinach::FeatureSteps
 
   step 'I should see a list of games' do
     expect(page).to have_content("I Doubt It")
-    expect(page).to have_content("Crazy Eights(not available yet)")
   end
 
   step 'I click to play I Doubt It' do
