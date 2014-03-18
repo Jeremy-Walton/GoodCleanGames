@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe IDoubtItGame do
+describe CrazyEightsGame do
   it_behaves_like Game
 end

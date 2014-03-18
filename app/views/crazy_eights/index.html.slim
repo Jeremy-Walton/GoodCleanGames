@@ -1,0 +1,9 @@
+h1 Crazy Eights Games!
+p Get the app to play a game.
+- if @games.any?
+  table.stats.Sign
+    tr
+      td Game ID
+      td Name
+      td Players
+    == render partial: 'game', collection: @games
