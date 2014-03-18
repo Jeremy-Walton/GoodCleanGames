@@ -2,7 +2,7 @@ require 'spec_helper'
 
 shared_examples Game do
 
-  let(:game) { described_class.new( name: "Jeremy Save", data: "JSON", number_of_players: 1, number_of_robots: 0) }
+  let(:game) { described_class.new( name: "Jeremy Save", data: "{}", number_of_players: 1, number_of_robots: 0) }
 
   subject { game }
 
@@ -14,7 +14,7 @@ shared_examples Game do
   it "should save to and retrieve from the database" do
   	game.save
   	expect(Game.first.name).to eq("Jeremy Save")
-  	expect(Game.first.data).to eq("JSON")
+  	expect(Game.first.data).to eq("{}")
     expect(Game.first.number_of_players).to eq(1)
     expect(Game.first.number_of_robots).to eq(0)
   end
