@@ -1,5 +1,10 @@
 class CrazyEightsController < ApplicationController
-  before_filter :authenticate_user!, only: [:index, :show, :new, :create]
+  skip_before_action :verify_authenticity_token
+  def create
+    @game = CrazyEightsGame.new(name: "test", data: params[:game])
+    @game.save
+    render nothing: true
+  end
 
   def show
     @game = CrazyEightsGame.find(params[:id])
