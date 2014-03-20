@@ -13,6 +13,8 @@ div ng-app=''
         | {{playerNames()}}
       h1
         | {{playerTurn()}}'s turn
+      h4.Rank
+          | Current rank: {{currentRank()}}
 
     section.Content
 
@@ -24,9 +26,7 @@ div ng-app=''
 
       section#Books
         h3 The Discard Pile
-        h4.Rank
-          | {{currentRank()}}
-        h5 Pile
+        h5 Pile size: {{pileSize()}}
         ul
           li
             img ng-src="{{discardPile()}}"

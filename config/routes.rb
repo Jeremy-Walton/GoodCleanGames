@@ -9,7 +9,7 @@ FinalProject::Application.routes.draw do
   end
 
   resources :stats
-  resources :crazy_eights, only: [ :index, :show]
+  resources :crazy_eights, only: [ :index, :show, :create]
 
   get "/games/IDoubtItRules" => 'static_pages#IDoubtItRules'
   get "/games" => "static_pages#games"

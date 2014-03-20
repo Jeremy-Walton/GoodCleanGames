@@ -129,6 +129,10 @@ var gameView = ['$scope', '$timeout', function($scope, $timeout) {
       return $scope.game.players;
     }
 
+    $scope.pileSize = function() {
+      return $scope.game.discardPile.size();
+    }
+
     $scope.loadGame = function() {
       if (input = prompt("What game id would you like to load?")) {
         window.location.replace("/i_doubt_it/" + input);
