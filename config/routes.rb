@@ -2,6 +2,7 @@ FinalProject::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   devise_for :users
   get 'users/:id' => 'users#show'
+  post 'users/token' => 'users#token'
 
   resources :i_doubt_it do
     get :waiting, on: :member
@@ -9,7 +10,9 @@ FinalProject::Application.routes.draw do
   end
 
   resources :stats
-  resources :crazy_eights, only: [ :index, :show, :create]
+  resources :crazy_eights, only: [ :index, :show, :create] do
+    resources :turn, controller: 'crazy_eights_turn', only: [ :create ]
+  end
 
   get "/games/IDoubtItRules" => 'static_pages#IDoubtItRules'
   get "/games" => "static_pages#games"
