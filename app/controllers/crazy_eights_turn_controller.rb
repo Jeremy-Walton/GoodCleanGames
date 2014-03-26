@@ -3,7 +3,6 @@ class CrazyEightsTurnController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def create
-    # binding.pry
     @game = CrazyEightsGame.find(params[:crazy_eight_id])
     @game.data = params[:game]
     if @game.save

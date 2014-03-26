@@ -11,7 +11,7 @@ FinalProject::Application.routes.draw do
 
   resources :stats
   resources :crazy_eights, only: [ :index, :show, :create, :update] do
-    resources :turn, controller: 'crazy_eights_turn', only: [ :create ]
+    post 'turn' => 'crazy_eights_turn#create'
   end
 
   get "/games/IDoubtItRules" => 'static_pages#IDoubtItRules'
