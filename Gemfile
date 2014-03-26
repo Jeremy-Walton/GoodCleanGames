@@ -26,6 +26,7 @@ group :development, :test do
   gem 'jasmine-rails'
   gem 'spinach-rails'
   gem 'pry-rails'
+  gem 'pry-debugger'
 end
 
 group :doc do
