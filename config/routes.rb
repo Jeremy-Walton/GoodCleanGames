@@ -10,7 +10,7 @@ FinalProject::Application.routes.draw do
   end
 
   resources :stats
-  resources :crazy_eights, only: [ :index, :show, :create] do
+  resources :crazy_eights, only: [ :index, :show, :create, :update] do
     resources :turn, controller: 'crazy_eights_turn', only: [ :create ]
   end
 

@@ -15,6 +15,7 @@ class Spinach::Features::TestUsernameIsTiedToIdoubtit < Spinach::FeatureSteps
       click_on 'Play'
     end
     click_on "Create or Join Game"
+    # need to select robot 1
     click_on "Create"
   end
 

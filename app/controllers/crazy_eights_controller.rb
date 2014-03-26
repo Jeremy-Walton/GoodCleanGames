@@ -1,21 +1,21 @@
 class CrazyEightsController < ApplicationController
-  # before_filter :authenticate_for_api
-  # before_filter :authenticate_user!, only: [:index, :show, :new, :create]
+  before_filter :authenticate_for_api, except:[:index]
+  skip_before_filter :verify_authenticity_token, except:[:index]
 
   def create
     number_of_players = params[:number_of_players].to_i + 1
     number_of_robots = params[:number_of_robots].to_i
-    @game = CrazyEightsGame.new(name: "New Game", data: params[:game], number_of_players: number_of_players, number_of_robots: number_of_robots)
+    @game = CrazyEightsGame.new(name: current_user.email, data: params[:game], users: [current_user], number_of_players: number_of_players, number_of_robots: number_of_robots)
     @game.save
-    render nothing: true
+    render json: {game: {id: @game.id}}
   end
 
   def update
-    @game = CrazyEightsGame.find(params[:game_id])
-    @game.users << params[:current_user]
+    @game = CrazyEightsGame.find(params[:id])
+    @game.users << current_user
     # increment_times_played
     # redirect_to i_doubt_it_path(@game.id)
-    render nothing: true
+    render json: { game: { users: @game.users, start_game: @game.has_enough_users? } }
   end
 
   def show

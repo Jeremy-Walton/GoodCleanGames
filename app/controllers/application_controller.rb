@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def authenticate_for_api
     request_http_basic_authentication unless
       authenticate_with_http_basic do |id, token|
-        user = User.find(id: id)
+        user = User.find(id)
         if user && Devise.secure_compare(user.authentication_token, token)
           sign_in user, store: false
         end
